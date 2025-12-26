@@ -8,8 +8,7 @@ This repository contains Spring Boot backend projects created for learning, prac
 
 A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, and **PostgreSQL**.
 
-👉 **Click here to view the project:**  
-🔗 https://github.com/praakhartripathi/spring-api/tree/main/expense-tracker
+- [expense-tracker](./expense-tracker)
 
 ### Features
 - Create, Read, Update, Delete expenses
