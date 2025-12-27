@@ -28,16 +28,13 @@ public class User {
 
     public User() {}
 
-    public User(Role role) {
-        this.role = role;
-    }
-
-    public User(Long id, String name, String email, String username, String password, boolean enabled, LocalDateTime createdAt) {
+    public User(Long id, String name, String email, String username, String password, Role role, boolean enabled, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.role = role;
         this.enabled = enabled;
         this.createdAt = createdAt;
     }

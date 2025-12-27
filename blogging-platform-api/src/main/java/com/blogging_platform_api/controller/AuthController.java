@@ -31,9 +31,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
-
         Map<String, Object> response = userService.login(request);
-
         return ResponseEntity.ok(response);
     }
 
@@ -41,6 +39,12 @@ public class AuthController {
     public ResponseEntity<UserProfileResponse> getMyProfile(Authentication authentication) {
         String email = authentication.getName();
         UserProfileResponse response = userService.getLoggedInUserProfile(email);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserProfileResponse> getUserById(@PathVariable Long userId) {
+        UserProfileResponse response = userService.getUserById(userId);
         return ResponseEntity.ok(response);
     }
 }

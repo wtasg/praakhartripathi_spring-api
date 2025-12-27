@@ -92,4 +92,24 @@ public class UserServiceImpl implements UserService{
                 user.getCreatedAt()
         );
     }
+
+    @Override
+    public UserProfileResponse getUserById(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+
+        User user;
+        if (optionalUser.isPresent()) {
+            user = optionalUser.get();
+        } else {
+            throw new RuntimeException("User not found");
+        }
+
+        return new UserProfileResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole().name(),
+                user.getCreatedAt()
+        );
+    }
 }
