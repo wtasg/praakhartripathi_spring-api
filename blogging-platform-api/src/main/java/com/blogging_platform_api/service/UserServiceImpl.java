@@ -2,22 +2,27 @@ package com.blogging_platform_api.service;
 
 import com.blogging_platform_api.DTO.LoginRequest;
 import com.blogging_platform_api.DTO.RegisterRequest;
+import com.blogging_platform_api.DTO.UserProfileResponse;
+import com.blogging_platform_api.config.JwtUtil;
 import com.blogging_platform_api.entity.User;
 import com.blogging_platform_api.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
 
     @Override
@@ -41,7 +46,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User login(LoginRequest request) {
+    public Map<String, Object> login(LoginRequest request) {
 
         Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
 
@@ -55,7 +60,36 @@ public class UserServiceImpl implements UserService{
             throw new RuntimeException("Invalid email or password");
         }
 
-        return user;
+        String token = jwtUtil.generateToken(user.getEmail());
+
+        return Map.of(
+                "message", "Login successfully",
+                "token", token,
+                "userId", user.getId(),
+                "email", user.getEmail(),
+                "username", user.getUsername(),
+                "role", user.getRole().name()
+        );
     }
 
+
+    @Override
+    public UserProfileResponse getLoggedInUserProfile(String email) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+
+        User user;
+        if (optionalUser.isPresent()) {
+            user = optionalUser.get();
+        } else {
+            throw new RuntimeException("User not found");
+        }
+
+        return new UserProfileResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole().name(),
+                user.getCreatedAt()
+        );
+    }
 }
