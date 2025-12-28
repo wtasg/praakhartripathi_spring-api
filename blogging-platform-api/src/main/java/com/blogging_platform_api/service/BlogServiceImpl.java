@@ -3,6 +3,7 @@ package com.blogging_platform_api.service;
 import com.blogging_platform_api.DTO.BlogResponse;
 import com.blogging_platform_api.DTO.CreateBlogRequest;
 import com.blogging_platform_api.DTO.PagedResponse;
+import com.blogging_platform_api.DTO.UpdateBlogRequest;
 import com.blogging_platform_api.entity.Blog;
 import com.blogging_platform_api.entity.Category;
 import com.blogging_platform_api.entity.User;
@@ -109,5 +110,89 @@ public class BlogServiceImpl implements BlogService{
         response.setLast(blogPage.isLast());
 
         return response;
+    }
+
+    @Override
+    public BlogResponse getBlogById(Long blogId) {
+        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
+
+        if (optionalBlog.isEmpty()) {
+            throw new RuntimeException("Blog not found with id: " + blogId);
+        }
+
+        Blog blog = optionalBlog.get();
+
+        BlogResponse response = new BlogResponse();
+        response.setId(blog.getId());
+        response.setTitle(blog.getTitle());
+        response.setContent(blog.getContent());
+        response.setAuthorEmail(blog.getAuthor().getEmail());
+        List<String> categoryNames = new ArrayList<>();
+
+        for (Category category : blog.getCategories()) {
+            categoryNames.add(category.getName());
+        }
+        response.setCategories(categoryNames);
+        response.setCreatedAt(blog.getCreatedAt());
+
+        return response;
+    }
+
+    @Override
+    public BlogResponse updateBlog(Long blogId, UpdateBlogRequest request, String loggedInUserEmail) {
+        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
+        if(optionalBlog.isEmpty()) {
+            throw new RuntimeException("Blog not found with id :" + blogId);
+        }
+        Blog blog = optionalBlog.get();
+
+        String authorEmail = blog.getAuthor().getEmail();
+        if (!authorEmail.equals(loggedInUserEmail)) {
+            throw new RuntimeException("you are not allowed to update this blog");
+        }
+
+        List<Category> categories = categoryRepository.findAllById(request.getCategoryIds());
+
+//        if (categories.size() != request.getCategoryIds().size()) {
+//            throw new RuntimeException("One or more categories not found");
+//        }
+
+        blog.setTitle(request.getTitle());
+        blog.setContent(request.getContent());
+        blog.setCategories(new HashSet<>(categories));
+
+        Blog updatedBlog = blogRepository.save(blog);
+
+        BlogResponse response = new BlogResponse();
+        response.setId(updatedBlog.getId());
+        response.setTitle(updatedBlog.getTitle());
+        response.setContent(updatedBlog.getContent());
+        response.setAuthorEmail(updatedBlog.getAuthor().getEmail());
+
+        List<String> categoryNames = new ArrayList<>();
+        for (Category category : updatedBlog.getCategories()) {
+            categoryNames.add(category.getName());
+        }
+        response.setCategories(categoryNames);
+        response.setCreatedAt(updatedBlog.getCreatedAt());
+
+        return response;
+    }
+
+    @Override
+    public void deleteBlog(Long blogId, String loggedInUserEmail) {
+        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
+
+        if(optionalBlog.isEmpty()) {
+            throw new RuntimeException("blog not found with id" + blogId);
+        }
+
+        Blog blog = optionalBlog.get();
+
+        String authorEmail = blog.getAuthor().getEmail();
+        if (!authorEmail.equals(loggedInUserEmail)) {
+            throw new RuntimeException("You are not allowed to delete this blog");
+        }
+        blogRepository.delete(blog);
     }
 }
