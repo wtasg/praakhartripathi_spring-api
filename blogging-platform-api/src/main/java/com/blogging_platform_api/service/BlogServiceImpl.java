@@ -195,4 +195,28 @@ public class BlogServiceImpl implements BlogService{
         }
         blogRepository.delete(blog);
     }
+
+    @Override
+    public List<BlogResponse> getBlogsByUserId(Long userId) {
+        List<Blog> blogs = blogRepository.findByAuthorId(userId);
+        List<BlogResponse> responses = new ArrayList<>();
+
+        for (Blog blog : blogs) {
+            BlogResponse response = new BlogResponse();
+            response.setId(blog.getId());
+            response.setTitle(blog.getTitle());
+            response.setContent(blog.getContent());
+            response.setAuthorEmail(blog.getAuthor().getEmail());
+
+            List<String> categoryNames = new ArrayList<>();
+            for (Category category : blog.getCategories()) {
+                categoryNames.add(category.getName());
+            }
+            response.setCategories(categoryNames);
+            response.setCreatedAt(blog.getCreatedAt());
+
+            responses.add(response);
+        }
+        return responses;
+    }
 }

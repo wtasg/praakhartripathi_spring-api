@@ -1,9 +1,11 @@
 package com.blogging_platform_api.controller;
 
+import com.blogging_platform_api.DTO.BlogResponse;
 import com.blogging_platform_api.DTO.LoginRequest;
 import com.blogging_platform_api.DTO.RegisterRequest;
 import com.blogging_platform_api.DTO.UserProfileResponse;
 import com.blogging_platform_api.entity.User;
+import com.blogging_platform_api.service.BlogService;
 import com.blogging_platform_api.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
@@ -11,15 +13,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
     private final UserService userService;
+    private final BlogService blogService;
 
-    public AuthController(UserService userService) {
+    public AuthController(UserService userService, BlogService blogService) {
         this.userService = userService;
+        this.blogService = blogService;
     }
 
     @PostMapping("/register")

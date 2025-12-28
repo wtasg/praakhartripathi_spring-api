@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/blogs")
 public class BlogController {
@@ -53,5 +55,11 @@ public class BlogController {
         String email = authentication.getName();
         blogService.deleteBlog(blogId, email);
         return ResponseEntity.ok("blog deleted successfully");
+    }
+
+    @GetMapping("/{userId}/blogs")
+    public ResponseEntity<List<BlogResponse>> getBlogsByUser(@PathVariable Long userId) {
+        List<BlogResponse> blogs = blogService.getBlogsByUserId(userId);
+        return ResponseEntity.ok(blogs);
     }
 }
