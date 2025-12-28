@@ -15,4 +15,5 @@ public interface BlogService {
     BlogResponse updateBlog(Long blogId, UpdateBlogRequest request, String loggedInUserEmail);
     void deleteBlog(Long blogId, String loggedInUserEmail);
     List<BlogResponse> getBlogsByUserId(Long userId);
+    BlogResponse likeBlog(Long blogId, String userEmail);
 }

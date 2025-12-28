@@ -27,18 +27,26 @@ public class Blog {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "blog_likes",
+            joinColumns = @JoinColumn(name = "blog_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> likedByUsers = new HashSet<>();
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
     public Blog() {}
 
-    public Blog(Long id, String title, String content, User author, Set<Category> categories, LocalDateTime createdAt) {
+    public Blog(Long id, String title, String content, User author, Set<Category> categories, Set<User> likedByUsers, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
         this.categories = categories;
+        this.likedByUsers = likedByUsers;
         this.createdAt = createdAt;
     }
 
@@ -76,6 +84,14 @@ public class Blog {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public Set<User> getLikedByUsers() {
+        return likedByUsers;
+    }
+
+    public void setLikedByUsers(Set<User> likedByUsers) {
+        this.likedByUsers = likedByUsers;
     }
 
     public void setCategories(Set<Category> categories) {

@@ -62,4 +62,11 @@ public class BlogController {
         List<BlogResponse> blogs = blogService.getBlogsByUserId(userId);
         return ResponseEntity.ok(blogs);
     }
+
+    @PostMapping("/{blogId}/like")
+    public ResponseEntity<BlogResponse> likeBlog(@PathVariable Long blogId, Authentication authentication) {
+        String email = authentication.getName();
+        BlogResponse response = blogService.likeBlog(blogId, email);
+        return ResponseEntity.ok(response);
+    }
 }

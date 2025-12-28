@@ -219,4 +219,47 @@ public class BlogServiceImpl implements BlogService{
         }
         return responses;
     }
+
+    @Override
+    public BlogResponse likeBlog(Long blogId, String userEmail) {
+        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
+        if (optionalBlog.isEmpty()) {
+            throw new RuntimeException("Blog not found with id " + blogId);
+        }
+
+        Blog blog = optionalBlog.get();
+
+        Optional<User> optionalUser = userRepository.findByEmail(userEmail);
+        User user;
+        if (optionalUser.isPresent()) {
+            user = optionalUser.get();
+        } else {
+            throw new RuntimeException("User not found");
+        }
+
+        if (blog.getLikedByUsers().contains(user)) {
+            throw new RuntimeException("you have already like this blog ");
+        }
+
+        blog.getLikedByUsers().add(user);
+        Blog savedBlog = blogRepository.save(blog);
+
+        BlogResponse response = new BlogResponse();
+        response.setId(savedBlog.getId());
+        response.setTitle(savedBlog.getTitle());
+        response.setContent(savedBlog.getContent());
+        response.setAuthorEmail(savedBlog.getAuthor().getEmail());
+
+        List<String> categoryNames = new ArrayList<>();
+        for (Category category : savedBlog.getCategories()) {
+            categoryNames.add(category.getName());
+        }
+
+        response.setCategories(categoryNames);
+        response.setCreatedAt(savedBlog.getCreatedAt());
+
+        response.setLikeCount(savedBlog.getLikedByUsers().size());
+
+        return response;
+    }
 }

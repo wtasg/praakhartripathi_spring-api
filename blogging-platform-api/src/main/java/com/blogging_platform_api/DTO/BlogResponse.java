@@ -8,17 +8,19 @@ public class BlogResponse {
     private String title;
     private String content;
     private String authorEmail;
+    private int likeCount;
     private List<String> categories;
     private LocalDateTime createdAt;
 
     public BlogResponse() {
     }
 
-    public BlogResponse(Long id, String title, String content, String authorEmail, List<String> categories, LocalDateTime createdAt) {
+    public BlogResponse(Long id, String title, String content, String authorEmail, int likeCount, List<String> categories, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.authorEmail = authorEmail;
+        this.likeCount = likeCount;
         this.categories = categories;
         this.createdAt = createdAt;
     }
@@ -61,6 +63,14 @@ public class BlogResponse {
 
     public void setCategories(List<String> categories) {
         this.categories = categories;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
     }
 
     public LocalDateTime getCreatedAt() {
