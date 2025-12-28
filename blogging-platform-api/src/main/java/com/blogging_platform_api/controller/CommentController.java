@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/blogs")
 public class CommentController {
@@ -25,5 +27,18 @@ public class CommentController {
         String email = authentication.getName();
         CommentResponse response = commentService.createComment(blogId, request, email);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/{blogId}/comments")
+    public ResponseEntity<List<CommentResponse>> getCommentsByBlogsId(@PathVariable Long blogId) {
+        List<CommentResponse> comments = commentService.getCommentsByBlogId(blogId);
+        return ResponseEntity.ok(comments);
+    }
+
+    @DeleteMapping("/{blogId}/comments/{commentId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long blogId, @PathVariable Long commentId, Authentication authentication) {
+        String email = authentication.getName();
+        commentService.deleteComment(blogId, commentId, email);
+        return ResponseEntity.noContent().build();
     }
 }

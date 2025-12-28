@@ -11,6 +11,10 @@ import com.blogging_platform_api.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.*;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,4 +59,57 @@ public class CommentServiceImpl implements CommentService{
 
         return response;
     }
+
+    @Override
+    public List<CommentResponse> getCommentsByBlogId(Long blogId) {
+        if (!blogRepository.existsById(blogId)) {
+            throw new RuntimeException("Blog not found with id" + blogId);
+        }
+        
+        List<Comment> comments = commentRepository.findByBlog_IdOrderByCreatedAtDesc(blogId);
+        List<CommentResponse> responses = new ArrayList<>();
+        
+        for (Comment comment : comments) {
+            CommentResponse response = new CommentResponse();
+            response.setId(comment.getId());
+            response.setContent(comment.getContent());
+            response.setAuthorEmail(comment.getAuthor().getEmail());
+            response.setCreatedAt(comment.getCreatedAt());
+
+            responses.add(response);
+        }
+        return responses;
+    }
+
+    @Override
+    public void deleteComment(Long blogId, Long commentId, String userEmail) {
+        Optional<Blog> blogOptional = blogRepository.findById(blogId);
+        if (blogOptional.isEmpty()) {
+            throw new RuntimeException("Blog not found with id " + blogId);
+        }
+        Blog blog = blogOptional.get();
+
+        Optional<Comment> commentOptional = commentRepository.findById(commentId);
+        if (commentOptional.isEmpty()) {
+            throw new RuntimeException("Comment not found with id " + commentId);
+        }
+        Comment comment = commentOptional.get();
+
+        if (!comment.getBlog().getId().equals(blog.getId())) {
+            throw new RuntimeException("Comment does not belong to this blog");
+        }
+
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
+        if (userOptional.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        User user = userOptional.get();
+
+        if (!comment.getAuthor().getId().equals(user.getId())) {
+            throw new RuntimeException("You can delete only your own comment");
+        }
+
+        commentRepository.delete(comment);
+    }
+
 }

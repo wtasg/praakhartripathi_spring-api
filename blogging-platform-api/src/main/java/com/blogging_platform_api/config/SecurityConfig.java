@@ -26,10 +26,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/me").authenticated()
                         .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/blogs/*/comments").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/comments/**").authenticated()
                         .requestMatchers(
-                                "/api/blogs/**",
-                                "/api/categories/**"
-                        ).authenticated()
+                                "/api/blogs/**"
+                        ).permitAll()
                         //.requestMatchers("/api/users/**").hasRole("ADMIN")
                         .requestMatchers("/api/users/**").authenticated()
                         .anyRequest().authenticated()
