@@ -2,6 +2,7 @@ package com.blogging_platform_api.service;
 
 import com.blogging_platform_api.DTO.BlogResponse;
 import com.blogging_platform_api.DTO.CreateBlogRequest;
+import com.blogging_platform_api.DTO.PagedResponse;
 import com.blogging_platform_api.entity.Blog;
 import com.blogging_platform_api.entity.Category;
 import com.blogging_platform_api.entity.User;
@@ -9,6 +10,10 @@ import com.blogging_platform_api.repository.BlogRepository;
 import com.blogging_platform_api.repository.CategoryRepository;
 import com.blogging_platform_api.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -64,6 +69,44 @@ public class BlogServiceImpl implements BlogService{
         response.setCategories(categoryNames);
 
         response.setCreatedAt(savedBlog.getCreatedAt());
+
+        return response;
+    }
+
+    @Override
+    public PagedResponse<BlogResponse> getAllBlogs(int page, int size, String sort) {
+        String[] sortParams = sort.split(",");
+
+        Sort.Direction direction = sortParams[1].equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortParams[0]));
+
+        Page<Blog> blogPage = blogRepository.findAll(pageable);
+        List<BlogResponse> blogs = new ArrayList<>();
+
+        for (Blog blog : blogPage.getContent()) {
+            BlogResponse response= new BlogResponse();
+            response.setId(blog.getId());
+            response.setTitle(blog.getTitle());
+            response.setContent(blog.getContent());
+            response.setAuthorEmail(blog.getAuthor().getEmail());
+
+            List<String> categoryNames = new ArrayList<>();
+            for (Category category : blog.getCategories()) {
+                categoryNames.add(category.getName());
+            }
+            response.setCategories(categoryNames);
+            response.setCreatedAt(blog.getCreatedAt());
+            blogs.add(response);
+        }
+
+        PagedResponse<BlogResponse> response = new PagedResponse<>();
+        response.setContent(blogs);
+        response.setPage(blogPage.getNumber());
+        response.setSize(blogPage.getSize());
+        response.setTotalElements(blogPage.getTotalElements());
+        response.setTotalPages(blogPage.getTotalPages());
+        response.setLast(blogPage.isLast());
 
         return response;
     }

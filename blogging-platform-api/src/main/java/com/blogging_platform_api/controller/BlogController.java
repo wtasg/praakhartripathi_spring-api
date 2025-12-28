@@ -2,15 +2,13 @@ package com.blogging_platform_api.controller;
 
 import com.blogging_platform_api.DTO.BlogResponse;
 import com.blogging_platform_api.DTO.CreateBlogRequest;
+import com.blogging_platform_api.DTO.PagedResponse;
 import com.blogging_platform_api.service.BlogService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/blogs")
@@ -26,5 +24,13 @@ public class BlogController {
         String email = authentication.getName();
         BlogResponse response = blogService.createBlog(request, email);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/getAllBlogs")
+    public ResponseEntity<PagedResponse<BlogResponse>> getAllBlogs(@RequestParam(defaultValue = "0") int page,
+                                                                   @RequestParam(defaultValue = "10")int size,
+                                                                   @RequestParam(defaultValue = "createdAt,desc") String sort) {
+        PagedResponse<BlogResponse> response = blogService.getAllBlogs(page, size, sort);
+        return ResponseEntity.ok(response);
     }
 }
