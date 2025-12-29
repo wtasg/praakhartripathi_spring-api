@@ -59,6 +59,69 @@ It follows clean architecture principles and implements secure, production-ready
 
 ---
 
+---
+
+## OTP Login API (Learning Project)
+
+A simple OTP-based login API built using **Spring Boot** to understand the fundamentals of authentication and request handling.
+
+* [otp-login](./otp-login)
+
+### Description
+
+This project demonstrates a basic phone number and OTP login flow without using any external SMS gateway or database.
+OTP is generated on the backend, stored temporarily in memory, and printed in the server console to simulate SMS delivery.
+All APIs are designed to be tested using `curl`.
+
+---
+
+### Features
+
+* Generate OTP for a phone number
+* OTP expiry handling
+* In-memory OTP storage using concurrent data structures
+* OTP verification and login simulation
+* Stateless REST APIs
+* No database required
+* Fully testable using `curl`
+
+---
+
+### API Endpoints
+
+#### Send OTP
+
+```
+POST /api/auth/send-otp
+```
+
+#### Verify OTP
+
+```
+POST /api/auth/verify-otp
+```
+
+---
+
+### Learning Focus
+
+* Understanding OTP authentication flow
+* Temporary data storage and expiry logic
+* REST API design with Spring Boot
+* Debugging API issues using curl
+* Building authentication systems without external dependencies
+
+---
+
+### Notes
+
+This project is intended **only for learning purposes**.
+In real-world applications, OTPs should be delivered via SMS/email providers and stored in in-memory stores like Redis, while user data should be persisted in a database.
+
+---
+
+
+
 ## GitHub Builder API
 
 A DevOps-style backend automation API built using **Spring Boot** that simulates a mini CI/CD pipeline.
