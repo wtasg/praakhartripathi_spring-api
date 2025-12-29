@@ -262,4 +262,37 @@ public class BlogServiceImpl implements BlogService{
 
         return response;
     }
+
+    @Override
+    public List<BlogResponse> getBlogsByCategories(Long categoryId) {
+        if (!categoryRepository.existsById(categoryId)) {
+            throw new RuntimeException("category not found with id " + categoryId);
+        }
+
+        List<Blog> blogs = blogRepository.findByCategories_IdOrderByCreatedAtDesc(categoryId);
+        List<BlogResponse> responses = new ArrayList<>();
+
+        for (Blog blog : blogs) {
+            BlogResponse response = new BlogResponse();
+            response.setId(blog.getId());
+            response.setTitle(blog.getTitle());
+            response.setContent(blog.getContent());
+            response.setAuthorEmail(blog.getAuthor().getEmail());
+            response.setCreatedAt(blog.getCreatedAt());
+
+            responses.add(response);
+        }
+        return responses;
+    }
+
+    @Override
+    public long getBlogLikeCount(Long blogId) {
+
+        if (!blogRepository.existsById(blogId)) {
+            throw new RuntimeException("Blog not found");
+        }
+
+        return blogRepository.countLikesByBlogId(blogId);
+    }
+
 }

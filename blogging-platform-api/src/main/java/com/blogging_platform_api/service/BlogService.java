@@ -16,4 +16,6 @@ public interface BlogService {
     void deleteBlog(Long blogId, String loggedInUserEmail);
     List<BlogResponse> getBlogsByUserId(Long userId);
     BlogResponse likeBlog(Long blogId, String userEmail);
+    List<BlogResponse> getBlogsByCategories(Long categoryId);
+    long getBlogLikeCount(Long blogId);
 }

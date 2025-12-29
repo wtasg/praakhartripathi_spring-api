@@ -57,7 +57,7 @@ public class BlogController {
         return ResponseEntity.ok("blog deleted successfully");
     }
 
-    @GetMapping("/{userId}/blogs")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<BlogResponse>> getBlogsByUser(@PathVariable Long userId) {
         List<BlogResponse> blogs = blogService.getBlogsByUserId(userId);
         return ResponseEntity.ok(blogs);
@@ -69,4 +69,10 @@ public class BlogController {
         BlogResponse response = blogService.likeBlog(blogId, email);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{blogId}/likes/count")
+    public ResponseEntity<Long> getBlogLikeCount(@PathVariable Long blogId) {
+        return ResponseEntity.ok(blogService.getBlogLikeCount(blogId));
+    }
+
 }
