@@ -30,6 +30,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/blogs/**"
                         ).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/categories/**").authenticated()
                         //.requestMatchers("/api/users/**").hasRole("ADMIN")
                         .requestMatchers("/api/users/**").authenticated()
                         .anyRequest().authenticated()
