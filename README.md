@@ -25,7 +25,7 @@ A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, 
 
 A fully-featured REST API for a blogging platform built using **Spring Boot**, **Spring Security (JWT)**, and **Spring Data JPA**.
 
-* [blog-platform-api](./blog-platform-api)
+* [blogging-platform-api](./blogging-platform-api)
 
 ### Description
 
