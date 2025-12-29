@@ -1,3 +1,4 @@
+* install docker as your OS and follow anything you like maybe Yt or AI bots or documentation
 * `docker pull postgres:15` or `docker pull postgres:vesion or latest`
 * `docker start postgres-db`
 * `docker exec -it postgres-db psql -U postgres -d db_name`
