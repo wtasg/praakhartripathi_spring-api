@@ -6,6 +6,8 @@ import com.task_tracker_api.entity.enums.TaskStatus;
 import com.task_tracker_api.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskServiceImpl implements TaskService{
     private final TaskRepository taskRepository;
@@ -26,5 +28,10 @@ public class TaskServiceImpl implements TaskService{
             task.setStatus(TaskStatus.PENDING);
         }
         return taskRepository.save(task);
+    }
+
+    @Override
+    public List<Task> getAllTask() {
+        return taskRepository.findAll();
     }
 }
