@@ -5,6 +5,10 @@ import com.task_tracker_api.dto.TaskUpdateRequest;
 import com.task_tracker_api.entity.Task;
 import com.task_tracker_api.entity.enums.TaskStatus;
 import com.task_tracker_api.repository.TaskRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -87,5 +91,19 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Task> getTaskByStatus(TaskStatus status) {
         return taskRepository.findByStatus(status);
+    }
+
+    @Override
+    public Page<Task> getTasksWithPagination(int page, int size, String sortBy, String sortDir) {
+        Sort sort;
+
+        if (sortDir.equalsIgnoreCase("desc")) {
+            sort = Sort.by(sortBy).descending();
+        } else {
+            sort = Sort.by(sortBy).ascending();
+        }
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return taskRepository.findAll(pageable);
     }
 }
