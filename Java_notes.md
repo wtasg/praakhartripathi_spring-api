@@ -1,7 +1,11 @@
-
 ---
 
+## Index
+- [What is programming?](#what-is-programming)
+
 ### The Story of Ramu and the Robot 🤖
+
+# What is programming?
 
 Ramu owned a small tea shop.
 One day, he bought a robot to help him.
