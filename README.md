@@ -21,6 +21,30 @@ A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, 
 
 ---
 
+Here is a **clean README-style section** for your **Task Tracker API**, written in the **same format and tone** as your Expense Tracker example.
+
+You can directly add this to your main repository README.
+
+---
+
+## Task Tracker API
+
+A RESTful Task Tracker API built using **Spring Boot**, **Spring Data JPA**, and **PostgreSQL**.
+
+* [task-tracker-api](./task-tracker-api)
+
+### Features
+
+* Create, Read, Update, Delete tasks
+* Get task by ID
+* Filter tasks by status (PENDING, IN_PROGRESS, COMPLETED)
+* Pagination and sorting support
+* PostgreSQL integration using Docker
+* Layered architecture (Controller, Service, Repository, DTO, Entity)
+* API tested using `curl`
+
+---
+
 ## Blog Platform API
 
 A fully-featured REST API for a blogging platform built using **Spring Boot**, **Spring Security (JWT)**, and **Spring Data JPA**.
