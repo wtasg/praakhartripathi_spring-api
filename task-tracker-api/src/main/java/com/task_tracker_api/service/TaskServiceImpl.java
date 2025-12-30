@@ -34,4 +34,15 @@ public class TaskServiceImpl implements TaskService{
     public List<Task> getAllTask() {
         return taskRepository.findAll();
     }
+
+    @Override
+    public Task getTaskById(Long id) {
+        Task task = taskRepository.findById(id).orElse(null);
+
+        if (task != null) {
+            return task;
+        } else {
+            throw new RuntimeException("task not found with id" + id);
+        }
+    }
 }
