@@ -83,4 +83,9 @@ public class TaskServiceImpl implements TaskService{
 
         taskRepository.deleteById(id);
     }
+
+    @Override
+    public List<Task> getTaskByStatus(TaskStatus status) {
+        return taskRepository.findByStatus(status);
+    }
 }

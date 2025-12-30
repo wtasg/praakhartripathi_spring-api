@@ -3,6 +3,7 @@ package com.task_tracker_api.service;
 import com.task_tracker_api.dto.TaskRequest;
 import com.task_tracker_api.dto.TaskUpdateRequest;
 import com.task_tracker_api.entity.Task;
+import com.task_tracker_api.entity.enums.TaskStatus;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface TaskService {
     Task getTaskById(Long id);
     Task updateTask(Long id, TaskUpdateRequest request);
     void deleteTask(Long id);
+    List<Task> getTaskByStatus(TaskStatus taskStatus);
 }

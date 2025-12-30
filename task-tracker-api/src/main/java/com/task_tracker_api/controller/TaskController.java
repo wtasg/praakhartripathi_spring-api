@@ -3,6 +3,7 @@ package com.task_tracker_api.controller;
 import com.task_tracker_api.dto.TaskRequest;
 import com.task_tracker_api.dto.TaskUpdateRequest;
 import com.task_tracker_api.entity.Task;
+import com.task_tracker_api.entity.enums.TaskStatus;
 import com.task_tracker_api.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -46,5 +47,10 @@ public class TaskController {
     public ResponseEntity<String> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.ok("task deleted successfully");
+    }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Task>> getTasksByStatus(@PathVariable TaskStatus status) {
+        return ResponseEntity.ok(taskService.getTaskByStatus(status));
     }
 }
