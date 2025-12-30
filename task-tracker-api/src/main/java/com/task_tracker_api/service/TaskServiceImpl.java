@@ -1,12 +1,14 @@
 package com.task_tracker_api.service;
 
 import com.task_tracker_api.dto.TaskRequest;
+import com.task_tracker_api.dto.TaskUpdateRequest;
 import com.task_tracker_api.entity.Task;
 import com.task_tracker_api.entity.enums.TaskStatus;
 import com.task_tracker_api.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskServiceImpl implements TaskService{
@@ -44,5 +46,41 @@ public class TaskServiceImpl implements TaskService{
         } else {
             throw new RuntimeException("task not found with id" + id);
         }
+    }
+
+    @Override
+    public Task updateTask(Long id, TaskUpdateRequest request) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+
+        if (!optionalTask.isPresent()) {
+            throw new RuntimeException("Task not found with id: " + id);
+        }
+
+        Task task = optionalTask.get();
+
+        if(request.getTitle() != null) {
+            task.setTitle(request.getTitle());
+        }
+
+        if(request.getDescription() != null) {
+            task.setDescription(request.getDescription());
+        }
+
+        if (request.getStatus() != null) {
+            task.setStatus(request.getStatus());
+        }
+
+        return taskRepository.save(task);
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        Optional<Task> task = taskRepository.findById(id);
+
+        if (!task.isPresent()) {
+            throw new RuntimeException("task not found with id");
+        }
+
+        taskRepository.deleteById(id);
     }
 }

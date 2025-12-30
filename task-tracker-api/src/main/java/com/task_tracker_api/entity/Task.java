@@ -18,7 +18,8 @@ public class Task {
     private TaskStatus status;
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-
+    @Column(name = "updated at")
+    private LocalDateTime updatedAt;
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -62,5 +63,13 @@ public class Task {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
