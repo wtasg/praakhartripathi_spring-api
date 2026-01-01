@@ -1,5 +1,6 @@
 package com.TMDB_CLI_Tool.service;
 
+import com.TMDB_CLI_Tool.dto.MovieDto;
 import com.TMDB_CLI_Tool.dto.OmdbSearchResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -34,5 +35,27 @@ public class MovieServiceImpl implements MovieService {
                 .toUri();
 
         return restTemplate.getForObject(uri, OmdbSearchResponse.class);
+    }
+
+    @Override
+    public MovieDto getMovieDetail(String imdbId) {
+        URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .queryParam("apikey", apiKey)
+                .queryParam("i", imdbId)
+                .build()
+                .toUri();
+
+        return restTemplate.getForObject(uri, MovieDto.class);
+    }
+
+    @Override
+    public MovieDto getMovieDetailByTitle(String title) {
+        URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .queryParam("apikey", apiKey)
+                .queryParam("t", title)
+                .build()
+                .toUri();
+
+        return restTemplate.getForObject(uri, MovieDto.class);
     }
 }
