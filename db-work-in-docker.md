@@ -13,3 +13,16 @@ docker run -d \
   -p 5432:5432 \
   postgres:15
 ```
+
+```
+spring.application.name=db_name
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/db_name
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+```
