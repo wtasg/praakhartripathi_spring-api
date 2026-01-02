@@ -3,6 +3,7 @@ package com.url_shortner.controller;
 import com.url_shortner.dto.CreateShortUrlRequest;
 import com.url_shortner.dto.CreateShortUrlResponse;
 import com.url_shortner.dto.GetOriginalUrlResponse;
+import com.url_shortner.dto.UrlDetailsResponse;
 import com.url_shortner.service.ShortUrlService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
@@ -39,6 +40,12 @@ public class ShortUrlController {
     @GetMapping("/api/v1/urls/{shortCode}")
     public ResponseEntity<GetOriginalUrlResponse> getOriginalUrlResponse(@PathVariable String shortCode) {
         GetOriginalUrlResponse response = shortUrlService.getOriginalUrlDetails(shortCode);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/api/v1/urls/{shortCode}/details")
+    public ResponseEntity<UrlDetailsResponse> getUrlDetails(@PathVariable String shortCode) {
+        UrlDetailsResponse response = shortUrlService.getUrlDetails(shortCode);
         return ResponseEntity.ok(response);
     }
 }

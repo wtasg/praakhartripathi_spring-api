@@ -2,6 +2,7 @@ package com.url_shortner.service;
 
 import com.url_shortner.dto.CreateShortUrlResponse;
 import com.url_shortner.dto.GetOriginalUrlResponse;
+import com.url_shortner.dto.UrlDetailsResponse;
 import com.url_shortner.entity.ShortUrl;
 import com.url_shortner.repository.ShortUrlRepository;
 import com.url_shortner.util.UrlCodeGenerator;
@@ -67,6 +68,24 @@ public class ShortUrlServiceImpl implements ShortUrlService{
                 shortUrl.getOriginalUrl(),
                 shortUrl.getCode(),
                 shortUrl.getCreatedAt()
+        );
+    }
+
+    @Override
+    public UrlDetailsResponse getUrlDetails(String code) {
+        Optional<ShortUrl> optionalShortUrl = shortUrlRepository.findByCode(code);
+
+        if (optionalShortUrl.isEmpty()) {
+            throw new RuntimeException("Short URL not found");
+        }
+
+        ShortUrl shortUrl = optionalShortUrl.get();
+
+        return new UrlDetailsResponse(
+                shortUrl.getOriginalUrl(),
+                shortUrl.getCreatedAt(),
+                shortUrl.getExpiresAt(),
+                shortUrl.getClickCount()
         );
     }
 }
