@@ -21,9 +21,17 @@ A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, 
 
 ---
 
-Here is a **clean README-style section** for your **Task Tracker API**, written in the **same format and tone** as your Expense Tracker example.
+## TMDB-CLI-Tool
+A Spring Boot–based movie and TV show search tool that exposes REST APIs and a CLI, integrating with the OMDb API to fetch details by title or IMDb ID and simulate popular and top-rated content using smart search strategies.
+* [TMDB-CLI-Tool](./TMDB-CLI-Tool)
 
-You can directly add this to your main repository README.
+### Features
+* Search movies and TV shows by title
+* Fetch detailed information using IMDb ID or name
+* Simulated popular movies and TV shows
+* Simulated top-rated movies and TV shows
+* RESTful APIs for easy integration
+* Clean layered architecture (Controller, Service, DTO)
 
 ---
 
