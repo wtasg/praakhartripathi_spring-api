@@ -2,6 +2,7 @@
 * `docker pull postgres:15` or `docker pull postgres:vesion or latest`
 * `docker start postgres-db`
 * `docker exec -it postgres-db psql -U postgres -d db_name`
+* `docker ps`
 
 ```postgres
 docker run -d \
