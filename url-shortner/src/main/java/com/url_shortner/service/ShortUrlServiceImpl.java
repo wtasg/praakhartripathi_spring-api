@@ -1,8 +1,6 @@
 package com.url_shortner.service;
 
-import com.url_shortner.dto.CreateShortUrlResponse;
-import com.url_shortner.dto.GetOriginalUrlResponse;
-import com.url_shortner.dto.UrlDetailsResponse;
+import com.url_shortner.dto.*;
 import com.url_shortner.entity.ShortUrl;
 import com.url_shortner.exception.ResourceNotFoundException;
 import com.url_shortner.repository.ShortUrlRepository;
@@ -27,15 +25,16 @@ public class ShortUrlServiceImpl implements ShortUrlService{
     }
 
     @Override
-    public CreateShortUrlResponse createShortUrl(String originalUrl) {
+    public CreateShortUrlResponse createShortUrl(CreateShortUrlRequest request) {
         String code = urlCodeGenerator.generate();
 
         while (shortUrlRepository.existsByCode(code)) {
             code = urlCodeGenerator.generate();
         }
         ShortUrl shortUrl = new ShortUrl();
-        shortUrl.setOriginalUrl(originalUrl);
+        shortUrl.setOriginalUrl(request.getOriginalUrl());
         shortUrl.setCode(code);
+        shortUrl.setExpiresAt(request.getExpiresAt());
 
         shortUrlRepository.save(shortUrl);
         return new CreateShortUrlResponse(
@@ -56,6 +55,7 @@ public class ShortUrlServiceImpl implements ShortUrlService{
             }
 
             shortUrl.setClickCount(shortUrl.getClickCount() + 1);
+            shortUrl.setLastAccessedAt(LocalDateTime.now());
             shortUrlRepository.save(shortUrl);
 
             return shortUrl.getOriginalUrl();
@@ -108,5 +108,21 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         }
 
         shortUrlRepository.delete(optionalShortUrl.get());
+    }
+
+    @Override
+    public UrlAnalyticsResponse getUrlAnalytics(String code) {
+        Optional<ShortUrl> optionalShortUrl = shortUrlRepository.findByCode(code);
+
+        if (optionalShortUrl.isEmpty()) {
+            throw new ResourceNotFoundException("Short URL not found");
+        }
+
+        ShortUrl shortUrl = optionalShortUrl.get();
+
+        return new UrlAnalyticsResponse(
+                shortUrl.getClickCount(),
+                shortUrl.getLastAccessedAt()
+        );
     }
 }

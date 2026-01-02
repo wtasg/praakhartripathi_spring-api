@@ -20,17 +20,20 @@ public class ShortUrl {
     private LocalDateTime expiresAt;
     @Column(name = "click_count")
     private Long clickCount = 0L;
+    @Column(name = "last_accessed_at")
+    private LocalDateTime lastAccessedAt;
 
     public ShortUrl() {
     }
 
-    public ShortUrl(Long id, String originalUrl, String code, LocalDateTime createdAt, LocalDateTime expiresAt, Long clickCount) {
+    public ShortUrl(Long id, String originalUrl, String code, LocalDateTime createdAt, LocalDateTime expiresAt, Long clickCount, LocalDateTime lastAccessedAt) {
         this.id = id;
         this.originalUrl = originalUrl;
         this.code = code;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
         this.clickCount = clickCount;
+        this.lastAccessedAt = lastAccessedAt;
     }
 
     public Long getId() {
@@ -79,6 +82,14 @@ public class ShortUrl {
 
     public void setClickCount(Long clickCount) {
         this.clickCount = clickCount;
+    }
+
+    public LocalDateTime getLastAccessedAt() {
+        return lastAccessedAt;
+    }
+
+    public void setLastAccessedAt(LocalDateTime lastAccessedAt) {
+        this.lastAccessedAt = lastAccessedAt;
     }
 
     @PrePersist

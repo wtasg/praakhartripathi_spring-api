@@ -1,9 +1,6 @@
 package com.url_shortner.controller;
 
-import com.url_shortner.dto.CreateShortUrlRequest;
-import com.url_shortner.dto.CreateShortUrlResponse;
-import com.url_shortner.dto.GetOriginalUrlResponse;
-import com.url_shortner.dto.UrlDetailsResponse;
+import com.url_shortner.dto.*;
 import com.url_shortner.service.ShortUrlService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +20,15 @@ public class ShortUrlController {
 
     @PostMapping("/api/v2/urls/shorturl")
     public ResponseEntity<CreateShortUrlResponse> createShortUrl(@Valid @RequestBody CreateShortUrlRequest request) {
-        CreateShortUrlResponse response = shortUrlService.createShortUrl(request.getOriginalUrl());
+        CreateShortUrlResponse response = shortUrlService.createShortUrl(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(response);
+    }
+
+    @PostMapping("/api/v1/urls/expire")
+    public ResponseEntity<CreateShortUrlResponse> createExpireShortUrl(@Valid @RequestBody CreateShortUrlRequest request) {
+        CreateShortUrlResponse response = shortUrlService.createShortUrl(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
@@ -53,5 +58,11 @@ public class ShortUrlController {
     public ResponseEntity<Void> deleteShortUrl(@PathVariable String shortCode) {
         shortUrlService.deleteShortUrl(shortCode);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/api/url/{shortCode}/analytics")
+    public ResponseEntity<UrlAnalyticsResponse> getUrlAnalytics(@PathVariable String shortCode) {
+        UrlAnalyticsResponse response = shortUrlService.getUrlAnalytics(shortCode);
+        return ResponseEntity.ok(response);
     }
 }
