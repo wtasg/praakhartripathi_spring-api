@@ -7,12 +7,14 @@ import com.url_shortner.util.UrlCodeGenerator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ShortUrlServiceImpl implements ShortUrlService{
     private final ShortUrlRepository shortUrlRepository;
     private final UrlCodeGenerator urlCodeGenerator;
 
-    @Value("$app.base-url")
+    @Value("${app.base-url}")
     private String baseUrl;
 
     public ShortUrlServiceImpl(ShortUrlRepository shortUrlRepository, UrlCodeGenerator urlCodeGenerator) {
@@ -33,8 +35,20 @@ public class ShortUrlServiceImpl implements ShortUrlService{
 
         shortUrlRepository.save(shortUrl);
         return new CreateShortUrlResponse(
-                baseUrl + "/" + code,
+                baseUrl + "/u/" + code,
                 code
         );
+    }
+
+    @Override
+    public String getOriginalUrl(String code) {
+        Optional<ShortUrl> optionalShortUrl = shortUrlRepository.findByCode(code);
+
+        if (optionalShortUrl.isPresent()) {
+            ShortUrl shortUrl = optionalShortUrl.get();
+            return shortUrl.getOriginalUrl();
+        } else {
+            throw new RuntimeException("Short url not found");
+        }
     }
 }

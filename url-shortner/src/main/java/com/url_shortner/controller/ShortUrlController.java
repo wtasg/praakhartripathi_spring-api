@@ -4,15 +4,14 @@ import com.url_shortner.dto.CreateShortUrlRequest;
 import com.url_shortner.dto.CreateShortUrlResponse;
 import com.url_shortner.service.ShortUrlService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
-@RequestMapping("api/v2/urls")
 public class ShortUrlController {
     private final ShortUrlService shortUrlService;
 
@@ -20,11 +19,19 @@ public class ShortUrlController {
         this.shortUrlService = shortUrlService;
     }
 
-    @PostMapping("/shorturl")
+    @PostMapping("/api/v2/urls/shorturl")
     public ResponseEntity<CreateShortUrlResponse> createShortUrl(@Valid @RequestBody CreateShortUrlRequest request) {
         CreateShortUrlResponse response = shortUrlService.createShortUrl(request.getOriginalUrl());
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
+    }
+
+    @GetMapping("/u/{shortCode}")
+    public ResponseEntity<Void> redirectToOriginalUrl(@PathVariable String shortCode) {
+        String originalUrl = shortUrlService.getOriginalUrl(shortCode);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create(originalUrl));
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 }
