@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/movies")
+@RequestMapping("/api")
 public class MovieController {
     private final MovieService movieService;
 
@@ -18,18 +18,52 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/search")
+    // --- Movie Endpoints ---
+
+    @GetMapping("/movies/search")
     public OmdbSearchResponse searchMovie(@RequestParam String query) {
         return movieService.searchMovie(query);
     }
 
-    @GetMapping("/{imdbId}")
+    @GetMapping("/movies/{imdbId}")
     public MovieDto getMovieDetail(@PathVariable String imdbId) {
         return movieService.getMovieDetail(imdbId);
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/movies/detail")
     public MovieDto getMovieDetailByTitle(@RequestParam String title) {
         return movieService.getMovieDetailByTitle(title);
+    }
+
+    @GetMapping("/movies/popular")
+    public OmdbSearchResponse getPopularMovies() {
+        return movieService.getPopularMovies();
+    }
+
+    @GetMapping("/movies/top-rated")
+    public OmdbSearchResponse getTopRatedMovies() {
+        return movieService.getTopRatedMovies();
+    }
+
+    // --- TV Show Endpoints ---
+
+    @GetMapping("/series/search")
+    public OmdbSearchResponse searchSeries(@RequestParam String query) {
+        return movieService.searchSeries(query);
+    }
+
+    @GetMapping("/series/detail")
+    public MovieDto getSeriesDetailByTitle(@RequestParam String title) {
+        return movieService.getSeriesDetailByTitle(title);
+    }
+
+    @GetMapping("/series/popular")
+    public OmdbSearchResponse getPopularSeries() {
+        return movieService.getPopularSeries();
+    }
+
+    @GetMapping("/series/top-rated")
+    public OmdbSearchResponse getTopRatedSeries() {
+        return movieService.getTopRatedSeries();
     }
 }
