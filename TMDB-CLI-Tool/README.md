@@ -1,88 +1,236 @@
-TMDB CLI Tool
+---
 
-A Spring Boot application that provides a command-line interface (CLI) and REST API for searching and retrieving movie and TV show information. It currently integrates with the OMDB API to fetch data.
+# 🎬 **TMDB CLI Tool**
 
-Features
+A **Spring Boot** application that provides both a **Command-Line Interface (CLI)** and **REST APIs** for searching and retrieving **Movies and TV Shows**.
+Currently, it integrates with the **OMDb API** to fetch movie and series data.
 
-- Search for Movies and TV Shows by title.
-- Get detailed information for a specific Movie or TV Show by IMDb ID or Title.
-- View lists of "Popular" and "Top Rated" Movies and TV Shows (simulated via keyword search).
-- RESTful API endpoints for easy integration.
+---
 
-Prerequisites
+## 🚀 **Features**
 
-- Java 17 or higher
-- Maven
-- An OMDB API Key (Get one for free at http://www.omdbapi.com/apikey.aspx)
+* 🔍 **Search Movies and TV Shows** by title
+* 🎞️ **Get detailed information** using:
 
-Configuration
+  * IMDb ID
+  * Movie / Series title
+* ⭐ **Popular Movies & TV Shows** (simulated using curated keyword searches)
+* 🏆 **Top Rated Movies & TV Shows** (simulated using IMDb data)
+* 🌐 **RESTful APIs** for easy integration with frontend or CLI tools
+* 🧩 Clean layered architecture (**Controller → Service → DTO**)
 
-1. Open the src/main/resources/application.properties file.
-2. Add your OMDB API key:
+---
 
+## 🛠️ **Tech Stack**
+
+* ☕ **Java 17+**
+* 🌱 **Spring Boot**
+* 🔗 **Spring WebClient**
+* 📦 **Maven**
+* 🎥 **OMDb API**
+
+---
+
+## ✅ **Prerequisites**
+
+Before running the project, make sure you have:
+
+* Java **17 or higher**
+* Maven installed
+* An **OMDb API Key**
+  👉 Get one for free: [http://www.omdbapi.com/apikey.aspx](http://www.omdbapi.com/apikey.aspx)
+
+---
+
+## ⚙️ **Configuration**
+
+1. Open the file:
+
+```bash
+src/main/resources/application.properties
+```
+
+2. Add your OMDb credentials:
+
+```properties
 omdb.api.key=YOUR_API_KEY
 omdb.api.url=https://www.omdbapi.com
+```
 
-Build and Run
+---
 
-1. Clone the repository:
-   git clone https://github.com/your-username/TMDB-CLI-Tool.git
+## 🏗️ **Build & Run**
 
-2. Navigate to the project directory:
-   cd TMDB-CLI-Tool
+### 1️⃣ Clone the repository
 
-3. Build the project using Maven:
-   mvn clean install
+```bash
+git clone https://github.com/praakhartripathi/spring-api.git
+```
 
-4. Run the application:
-   mvn spring-boot:run
+### 2️⃣ Navigate to the project directory
 
-The application will start on http://localhost:8080.
+```bash
+cd spring-api/TMDB-CLI-Tool
+```
 
-API Endpoints
+### 3️⃣ Build the project
 
-Movies
+```bash
+mvn clean install
+```
 
-- Search Movies:
-  GET /api/movies/search?query={title}
-  Example: curl "http://localhost:8080/api/movies/search?query=Batman"
+### 4️⃣ Run the application
 
-- Get Movie Detail by IMDb ID:
-  GET /api/movies/{imdbId}
-  Example: curl "http://localhost:8080/api/movies/tt0372784"
+```bash
+mvn spring-boot:run
+```
 
-- Get Movie Detail by Title:
-  GET /api/movies/detail?title={title}
-  Example: curl "http://localhost:8080/api/movies/detail?title=Inception"
+🚀 Application will start at:
+**[http://localhost:8080](http://localhost:8080)**
 
-- Get Popular Movies (Simulated):
-  GET /api/movies/popular
+---
 
-- Get Top Rated Movies (Simulated):
-  GET /api/movies/top-rated
+## 🌐 **API Endpoints**
 
-TV Shows (Series)
+### 🎬 Movies
 
-- Search TV Shows:
-  GET /api/series/search?query={title}
-  Example: curl "http://localhost:8080/api/series/search?query=Friends"
+#### 🔍 Search Movies
 
-- Get TV Show Detail by Title:
-  GET /api/series/detail?title={title}
-  Example: curl "http://localhost:8080/api/series/detail?title=Breaking%20Bad"
+```http
+GET /api/movies/search?query={title}
+```
 
-- Get Popular TV Shows (Simulated):
-  GET /api/series/popular
+Example:
 
-- Get Top Rated TV Shows (Simulated):
-  GET /api/series/top-rated
+```bash
+curl "http://localhost:8080/api/movies/search?query=Batman"
+```
 
-Project Structure
+---
 
-- src/main/java/com/TMDB_CLI_Tool/controller: Contains the REST controller (MovieController).
-- src/main/java/com/TMDB_CLI_Tool/service: Contains the business logic and API integration (MovieService).
-- src/main/java/com/TMDB_CLI_Tool/dto: Contains Data Transfer Objects (MovieDto, OmdbSearchResponse).
+#### 🎞️ Get Movie Detail by IMDb ID
 
-License
+```http
+GET /api/movies/{imdbId}
+```
 
-This project is licensed under the MIT License.
+Example:
+
+```bash
+curl "http://localhost:8080/api/movies/tt0372784"
+```
+
+---
+
+#### 📖 Get Movie Detail by Title
+
+```http
+GET /api/movies/detail?title={title}
+```
+
+Example:
+
+```bash
+curl "http://localhost:8080/api/movies/detail?title=Inception"
+```
+
+---
+
+#### ⭐ Popular Movies (Simulated)
+
+```http
+GET /api/movies/popular
+```
+
+---
+
+#### 🏆 Top Rated Movies (Simulated)
+
+```http
+GET /api/movies/top-rated
+```
+
+---
+
+### 📺 TV Shows (Series)
+
+#### 🔍 Search TV Shows
+
+```http
+GET /api/series/search?query={title}
+```
+
+Example:
+
+```bash
+curl "http://localhost:8080/api/series/search?query=Friends"
+```
+
+---
+
+#### 📖 Get TV Show Detail by Title
+
+```http
+GET /api/series/detail?title={title}
+```
+
+Example:
+
+```bash
+curl "http://localhost:8080/api/series/detail?title=Breaking%20Bad"
+```
+
+---
+
+#### ⭐ Popular TV Shows (Simulated)
+
+```http
+GET /api/series/popular
+```
+
+---
+
+#### 🏆 Top Rated TV Shows (Simulated)
+
+```http
+GET /api/series/top-rated
+```
+
+---
+
+## 🗂️ **Project Structure**
+
+```
+src/main/java/com/TMDB_CLI_Tool
+│
+├── controller   → REST Controllers
+├── service      → Business logic & OMDb API integration
+├── dto          → Data Transfer Objects (DTOs)
+└── TMDBCliToolApplication.java
+```
+
+---
+
+## 💡 **Design Notes**
+
+* OMDb does **not** provide real popularity or trending endpoints
+* “Popular” and “Top Rated” APIs are **simulated** using:
+
+  * IMDb Top movie IDs
+  * Franchise-based keyword searches
+* The architecture allows **easy switching** to TMDB or other providers in the future
+
+---
+
+## 📜 **License**
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 🔗 **Repository**
+
+👉 [https://github.com/praakhartripathi/spring-api/tree/main/TMDB-CLI-Tool](https://github.com/praakhartripathi/spring-api/tree/main/TMDB-CLI-Tool)
+
+---
+
