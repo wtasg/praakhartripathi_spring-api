@@ -21,6 +21,23 @@ A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, 
 
 ---
 
+### URL Shortener API
+
+A production-grade URL Shortener REST API built using Spring Boot, Spring Data JPA, and PostgreSQL.
+* [url-shortner](./url-shortner)
+
+## Features
+* Create short URLs from long URLs
+* Redirect short URLs to original URLs
+* Expiry-based short URLs
+* Click count and last access analytics
+* View URL details
+* Delete short URLs
+* PostgreSQL database integration
+* Layered architecture (Controller, Service, Repository)
+
+---
+
 ## TMDB-CLI-Tool
 A Spring Boot–based movie and TV show search tool that exposes REST APIs and a CLI, integrating with the OMDb API to fetch details by title or IMDb ID and simulate popular and top-rated content using smart search strategies.
 * [TMDB-CLI-Tool](./TMDB-CLI-Tool)
