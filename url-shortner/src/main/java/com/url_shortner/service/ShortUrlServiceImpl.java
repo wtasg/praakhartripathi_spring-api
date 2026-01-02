@@ -4,11 +4,13 @@ import com.url_shortner.dto.CreateShortUrlResponse;
 import com.url_shortner.dto.GetOriginalUrlResponse;
 import com.url_shortner.dto.UrlDetailsResponse;
 import com.url_shortner.entity.ShortUrl;
+import com.url_shortner.exception.ResourceNotFoundException;
 import com.url_shortner.repository.ShortUrlRepository;
 import com.url_shortner.util.UrlCodeGenerator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -48,9 +50,17 @@ public class ShortUrlServiceImpl implements ShortUrlService{
 
         if (optionalShortUrl.isPresent()) {
             ShortUrl shortUrl = optionalShortUrl.get();
+
+            if (shortUrl.getExpiresAt() != null && shortUrl.getExpiresAt().isBefore(LocalDateTime.now())) {
+                throw new RuntimeException("Short URL has expired");
+            }
+
+            shortUrl.setClickCount(shortUrl.getClickCount() + 1);
+            shortUrlRepository.save(shortUrl);
+
             return shortUrl.getOriginalUrl();
         } else {
-            throw new RuntimeException("Short url not found");
+            throw new ResourceNotFoundException("Short url not found");
         }
     }
 
@@ -59,7 +69,7 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         Optional<ShortUrl> optionalShortUrl = shortUrlRepository.findByCode(code);
 
         if (optionalShortUrl.isEmpty()) {
-            throw new RuntimeException("Short URL not found");
+            throw new ResourceNotFoundException("Short URL not found");
         }
 
         ShortUrl shortUrl = optionalShortUrl.get();
@@ -76,7 +86,7 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         Optional<ShortUrl> optionalShortUrl = shortUrlRepository.findByCode(code);
 
         if (optionalShortUrl.isEmpty()) {
-            throw new RuntimeException("Short URL not found");
+            throw new ResourceNotFoundException("Short URL not found");
         }
 
         ShortUrl shortUrl = optionalShortUrl.get();
@@ -87,5 +97,16 @@ public class ShortUrlServiceImpl implements ShortUrlService{
                 shortUrl.getExpiresAt(),
                 shortUrl.getClickCount()
         );
+    }
+
+    @Override
+    public void deleteShortUrl(String code) {
+        Optional<ShortUrl> optionalShortUrl = shortUrlRepository.findByCode(code);
+
+        if (optionalShortUrl.isEmpty()) {
+            throw new ResourceNotFoundException("Short URL not found");
+        }
+
+        shortUrlRepository.delete(optionalShortUrl.get());
     }
 }

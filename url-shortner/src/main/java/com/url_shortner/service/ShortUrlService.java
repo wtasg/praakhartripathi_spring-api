@@ -9,4 +9,5 @@ public interface ShortUrlService {
     String getOriginalUrl(String code);
     GetOriginalUrlResponse getOriginalUrlDetails(String code);
     UrlDetailsResponse getUrlDetails(String code);
+    void deleteShortUrl(String code);
 }

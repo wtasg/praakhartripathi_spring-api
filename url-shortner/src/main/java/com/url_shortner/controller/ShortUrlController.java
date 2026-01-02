@@ -48,4 +48,10 @@ public class ShortUrlController {
         UrlDetailsResponse response = shortUrlService.getUrlDetails(shortCode);
         return ResponseEntity.ok(response);
     }
+
+    @DeleteMapping("/api/v1/urls/{shortCode}")
+    public ResponseEntity<Void> deleteShortUrl(@PathVariable String shortCode) {
+        shortUrlService.deleteShortUrl(shortCode);
+        return ResponseEntity.noContent().build();
+    }
 }
