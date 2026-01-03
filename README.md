@@ -30,7 +30,6 @@ A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, 
 A backend User Authentication Service built using Spring Boot that provides secure user registration, login, and password management using JWT-based authentication.
 
 * [ user-authentication-service ](./user-authentication-service)
----
 
 ### Details
 
