@@ -19,7 +19,37 @@ A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, 
 * Layered architecture (Controller, Service, Repository)
 * API tested using `curl`
 
+--
+
 ---
+
+## User Authentication Service
+
+### Project
+
+A backend User Authentication Service built using Spring Boot that provides secure user registration, login, and password management using JWT-based authentication.
+
+* [ user-authentication-service ](./user-authentication-service)
+---
+
+### Details
+
+This project implements industry-standard authentication and authorization mechanisms. It uses Spring Security with JWT for stateless authentication, BCrypt for password encryption, and supports role-based access control.
+
+---
+
+### Features
+
+* User registration
+* User login with JWT token generation
+* Forgot password functionality
+* Update password with current password verification
+* JWT-based authentication
+* Role-based access control (USER, ADMIN)
+* Secure password hashing using BCrypt
+
+---
+
 
 ### URL Shortener API
 
