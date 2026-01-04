@@ -19,7 +19,24 @@ A RESTful Expense Tracker API built using **Spring Boot**, **Spring Data JPA**, 
 * Layered architecture (Controller, Service, Repository)
 * API tested using `curl`
 
---
+
+---
+
+## Weather Info API Wrapper
+
+Project Summary
+Weather Info API Wrapper is a Spring Boot–based backend application that acts as an intermediary between client applications and the OpenWeatherMap service. The project exposes a clean and simplified REST API to fetch current weather information for a given city while securely managing external API keys and abstracting third-party API complexity from the client.
+
+* [Whether-Info-api](./Whether-Info-api)
+
+Features
+* City-based weather lookup using a RESTful endpoint
+* Integration with the OpenWeatherMap Current Weather API
+* Simplified JSON response containing temperature, humidity, and weather description
+* Secure API key management using application properties
+* Layered architecture with controller, service, and DTO separation
+* Easy to extend with caching, Swagger documentation, and exception handling
+
 
 ---
 
