@@ -61,3 +61,25 @@
         <scope>runtime</scope>
     </dependency>
 ```
+
+``` ii
+<!-- Scheduler -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+  </dependency>
+
+  <!-- Twilio -->
+  <dependency>
+    <groupId>com.twilio.sdk</groupId>
+    <artifactId>twilio</artifactId>
+    <version>9.14.1</version>
+  </dependency>
+
+  <!-- HTTP Client -->
+  <dependency>
+    <groupId>com.squareup.okhttp3</groupId>
+    <artifactId>okhttp</artifactId>
+    <version>4.12.0</version>
+  </dependency>
+```
