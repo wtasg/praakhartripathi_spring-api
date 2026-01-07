@@ -68,8 +68,8 @@ This repository contains Spring Boot backend projects.
 
 ## feedback and review system
 
-* [feedback and review sytstem](./feedback and review sytstem)
-* 
+* [feedback and review sytstem](./feedback-and-review-sytstem)
+  
 ---
 
 
