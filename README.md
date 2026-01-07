@@ -72,4 +72,9 @@ This repository contains Spring Boot backend projects.
   
 ---
 
+## caching-proxy
+* [caching-proxy](./caching-proxy)
+
+---
+
 
