@@ -62,7 +62,7 @@ This repository contains Spring Boot backend projects.
 
 ## Weather Info API Wrapper
 
-* [Whether-Info-api](./Whether-Info-api)
+* [Whether-Info-api](./feedback-and-review-sytstem)
 
 ---
 
