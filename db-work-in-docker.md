@@ -3,6 +3,8 @@
 * `docker start postgres-db`
 * `docker exec -it postgres-db psql -U postgres -d db_name`
 * `docker ps`
+* `docker stop image-id` - to stop the image
+* 
 
 ```postgres
 docker run -d \
