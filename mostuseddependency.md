@@ -92,3 +92,12 @@ dependency>
         <version>0.21.0</version>
     </dependency>
 ```
+
+```image processing
+<dependency>
+    <groupId>net.coobird</groupId>
+    <artifactId>thumbnailator</artifactId>
+    <version>0.4.20</version>
+</dependency>
+
+```
