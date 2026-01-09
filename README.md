@@ -84,5 +84,9 @@ This repository contains Spring Boot backend projects.
 
 ## image-processing-service
 * [image-processing-service](./image-processing-service)
+
 ---
+
+## websocket-broadcast-server
+* [websocket-broadcast-server](./websocket-broadcast-server)
 
