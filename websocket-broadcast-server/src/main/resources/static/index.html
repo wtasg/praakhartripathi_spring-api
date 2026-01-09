@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Broadcast Test</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; background: #f9f9f9; }
+        .message { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
+        .status { font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>WebSocket Broadcast Receiver</h2>
+    <div id="status" class="status">Status: Disconnected</div>
+    <div id="messages"></div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        const messagesDiv = document.getElementById('messages');
+        let socket;
+
+        function connect() {
+            socket = new WebSocket('ws://localhost:8080/broadcast');
+
+            socket.onopen = function() {
+                statusDiv.innerText = 'Status: Connected';
+                statusDiv.style.color = 'green';
+                addMessage('System: Connected to WebSocket server');
+            };
+
+            socket.onmessage = function(event) {
+                addMessage('Received: ' + event.data);
+            };
+
+            socket.onclose = function() {
+                statusDiv.innerText = 'Status: Disconnected';
+                statusDiv.style.color = 'red';
+                addMessage('System: Disconnected. Retrying in 3s...');
+                setTimeout(connect, 3000);
+            };
+
+            socket.onerror = function(error) {
+                console.error('WebSocket Error: ', error);
+                statusDiv.innerText = 'Status: Error';
+                statusDiv.style.color = 'red';
+            };
+        }
+
+        function addMessage(text) {
+            const msg = document.createElement('div');
+            msg.className = 'message';
+            msg.innerText = new Date().toLocaleTimeString() + ' - ' + text;
+            messagesDiv.appendChild(msg);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        connect();
+    </script>
+</body>
+</html>
