@@ -84,6 +84,7 @@ public class WebSecurityConfig {
             @Override
             public void customize(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry auth) {
                 auth.requestMatchers("/api/auth/**").permitAll()
+                    .requestMatchers("/api/workouts/**").authenticated()
                     .anyRequest().authenticated();
             }
         });

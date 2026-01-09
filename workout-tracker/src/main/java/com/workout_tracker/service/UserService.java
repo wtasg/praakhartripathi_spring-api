@@ -8,4 +8,6 @@ public interface UserService {
     ResponseEntity<JwtResponse> authenticateUser(LoginRequest loginRequest);
     ResponseEntity<MessageResponse> updatePassword(UpdatePasswordRequest updatePasswordRequest);
     ResponseEntity<MessageResponse> forgotPassword(ForgotPasswordRequest forgotPasswordRequest);
+    ResponseEntity<UserProfileResponse> getCurrentUser();
+    ResponseEntity<MessageResponse> updateProfile(UpdateProfileRequest updateProfileRequest);
 }

@@ -34,4 +34,14 @@ public class AuthController {
     public ResponseEntity<MessageResponse> forgotPassword(@Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest) {
         return userService.forgotPassword(forgotPasswordRequest);
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserProfileResponse> getCurrentUser() {
+        return userService.getCurrentUser();
+    }
+
+    @PutMapping("/profile")
+    public ResponseEntity<MessageResponse> updateProfile(@Valid @RequestBody UpdateProfileRequest updateProfileRequest) {
+        return userService.updateProfile(updateProfileRequest);
+    }
 }

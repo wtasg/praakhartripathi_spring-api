@@ -81,7 +81,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<MessageResponse> updatePassword(UpdatePasswordRequest updatePasswordRequest) {
-        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!(principal instanceof UserDetailsImpl)) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
+        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) principal;
         Long userId = userDetails.getId();
 
         Optional<User> userOptional = userRepository.findById(userId);
@@ -117,5 +121,62 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("Password reset successfully!"));
+    }
+
+    @Override
+    public ResponseEntity<UserProfileResponse> getCurrentUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!(principal instanceof UserDetailsImpl)) {
+            return ResponseEntity.badRequest().build();
+        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) principal;
+        Long userId = userDetails.getId();
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        User user = userOptional.get();
+        UserProfileResponse response = new UserProfileResponse(
+                user.getId(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getMobileNumber(),
+                user.getGender(),
+                user.getDateOfBirth(),
+                user.getCountry(),
+                user.getTimeZone()
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<MessageResponse> updateProfile(UpdateProfileRequest updateProfileRequest) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!(principal instanceof UserDetailsImpl)) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
+        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) principal;
+        Long userId = userDetails.getId();
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not found!"));
+        }
+
+        User user = userOptional.get();
+
+        user.setFullName(updateProfileRequest.getFullName());
+        user.setMobileNumber(updateProfileRequest.getMobileNumber());
+        user.setGender(updateProfileRequest.getGender());
+        user.setDateOfBirth(updateProfileRequest.getDateOfBirth());
+        user.setCountry(updateProfileRequest.getCountry());
+        user.setTimeZone(updateProfileRequest.getTimeZone());
+
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("Profile updated successfully!"));
     }
 }
