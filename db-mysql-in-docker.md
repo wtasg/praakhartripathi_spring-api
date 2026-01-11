@@ -13,9 +13,9 @@ docker run -d \
 mysql:8.0
 
   ```
-* docker ps -a to check
-* docker start mysql-pos
-* docker exec -it mysql-pos mysql -u root -p
+* `docker ps -a` to check
+* `docker start mysql-pos`
+* `docker exec -it mysql-pos mysql -u root -p`
 * enter password
 
 * for stop `docker stop mysql-pos`
