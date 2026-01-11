@@ -101,3 +101,15 @@ dependency>
 </dependency>
 
 ```
+
+``` razorpay
+<!-- https://mvnrepository.com/artifact/com.razorpay/razorpay-java -->
+<dependency>
+    <groupId>com.razorpay</groupId>
+    <artifactId>razorpay-java</artifactId>
+    <version>1.4.4</version>
+    <scope>compile</scope>
+</dependency>
+
+
+```
