@@ -21,3 +21,13 @@ mysql:8.0
 * for stop `docker stop mysql-pos`
 * for remove`docker rm mysql-pos`
 * 
+
+
+```
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/pos_db
+spring.datasource.username=pos_user
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.show-sql: true
+```
