@@ -1,6 +1,8 @@
 * download docker using doc or yt or bot according you os
-* docker pull mysql:8.0
-* ```sql
+* docker pull mysql:oraclelinux9
+
+```sql
+
 docker run -d \
 --name mysql-pos \
 -e MYSQL_ROOT_PASSWORD=root \
