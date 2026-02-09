@@ -11,20 +11,20 @@ import java.util.Map;
 public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Map<String, String>> handleIllegalState(
-            IllegalStateException ex) {
+        IllegalStateException ex) {
 
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(Map.of("error", ex.getMessage()));
+            .status(HttpStatus.BAD_REQUEST)
+            .body(Map.of("error", ex.getMessage()));
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Map<String, String>> handleRuntime(
-            RuntimeException ex) {
+        RuntimeException ex) {
 
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("error", "Operation failed"));
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(Map.of("error", "Operation failed"));
     }
 
 }

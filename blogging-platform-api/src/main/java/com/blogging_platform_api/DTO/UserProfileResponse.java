@@ -9,7 +9,8 @@ public class UserProfileResponse {
     private String role;
     private LocalDateTime createdAt;
 
-    public UserProfileResponse(){}
+    public UserProfileResponse() {
+    }
 
     public UserProfileResponse(Long id, String name, String email, String role, LocalDateTime createdAt) {
         this.id = id;

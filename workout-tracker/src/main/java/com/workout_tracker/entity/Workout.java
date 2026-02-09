@@ -2,6 +2,7 @@ package com.workout_tracker.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 @Entity

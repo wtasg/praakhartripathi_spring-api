@@ -1,6 +1,7 @@
 # WebSocket Broadcast Server
 
-A simple Spring Boot application that demonstrates a WebSocket broadcast server. It allows clients to connect via WebSocket and receive messages broadcasted via a REST API endpoint.
+A simple Spring Boot application that demonstrates a WebSocket broadcast server. It allows clients to connect via
+WebSocket and receive messages broadcasted via a REST API endpoint.
 
 ## Features
 

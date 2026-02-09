@@ -27,11 +27,11 @@ public class ImageController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ImageUploadResponse> uploadImage(
-            @RequestParam("file") MultipartFile file,
-            @RequestParam(value = "width", required = false) Integer width,
-            @RequestParam(value = "height", required = false) Integer height,
-            @RequestParam(value = "quality", required = false) Float quality,
-            @RequestParam(value = "format", required = false) String format
+        @RequestParam("file") MultipartFile file,
+        @RequestParam(value = "width", required = false) Integer width,
+        @RequestParam(value = "height", required = false) Integer height,
+        @RequestParam(value = "quality", required = false) Float quality,
+        @RequestParam(value = "format", required = false) String format
     ) {
         try {
             ImageUploadResponse response = imageService.processImage(file, width, height, quality, format);
@@ -61,8 +61,8 @@ public class ImageController {
 
     @PostMapping("/{id}/convert")
     public ResponseEntity<ImageUploadResponse> convertImage(
-            @PathVariable Long id,
-            @RequestParam("format") String format
+        @PathVariable Long id,
+        @RequestParam("format") String format
     ) {
         try {
             ImageUploadResponse response = imageService.convertImage(id, format);
@@ -84,8 +84,8 @@ public class ImageController {
 
     @GetMapping
     public ResponseEntity<Page<ImageMetadata>> getAllImages(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
         Page<ImageMetadata> images = imageService.getAllImages(pageable);
@@ -104,9 +104,9 @@ public class ImageController {
 
     @PostMapping("/{id}/thumbnail")
     public ResponseEntity<Map<String, String>> generateThumbnail(
-            @PathVariable Long id,
-            @RequestParam(defaultValue = "150") int width,
-            @RequestParam(defaultValue = "150") int height
+        @PathVariable Long id,
+        @RequestParam(defaultValue = "150") int width,
+        @RequestParam(defaultValue = "150") int height
     ) {
         try {
             String thumbnailUrl = imageService.generateThumbnail(id, width, height);

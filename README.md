@@ -69,28 +69,33 @@ This repository contains Spring Boot backend projects.
 ## feedback and review system
 
 * [feedback and review sytstem](./feedback-and-review-sytstem)
-  
+
 ---
 
 ## caching-proxy
+
 * [caching-proxy](./caching-proxy)
 
 ---
 
 ## Markdown-note-taking-app
+
 * [Markdown-note-taking-app](./Markdown-note-taking-app)
 
 ---
 
 ## image-processing-service
+
 * [image-processing-service](./image-processing-service)
 
 ---
 
 ## websocket-broadcast-server
+
 * [websocket-broadcast-server](./websocket-broadcast-server)
 
 ---
 
 ## workout-tracker
+
 * [workout-tracker](./workout-tracker)

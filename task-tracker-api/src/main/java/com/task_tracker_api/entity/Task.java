@@ -20,6 +20,7 @@ public class Task {
     private LocalDateTime createdAt;
     @Column(name = "updated at")
     private LocalDateTime updatedAt;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

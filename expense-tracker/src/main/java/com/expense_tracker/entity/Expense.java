@@ -24,7 +24,8 @@ public class Expense {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    public Expense() {}
+    public Expense() {
+    }
 
     public Expense(Long id, Long userId, String title, Double amount, String category, LocalDate expenseDate, LocalDateTime createdAt) {
         Id = id;

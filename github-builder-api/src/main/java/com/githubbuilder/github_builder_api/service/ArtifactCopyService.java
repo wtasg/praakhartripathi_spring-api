@@ -22,7 +22,7 @@ public class ArtifactCopyService {
 
             return targetFile;
         } catch (IOException e) {
-            throw new RuntimeException("failed to copy to internal storage" ,e);
+            throw new RuntimeException("failed to copy to internal storage", e);
         }
     }
 

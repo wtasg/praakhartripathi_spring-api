@@ -13,6 +13,7 @@ docker run -d \
 mysql:8.0
 
   ```
+
 * `docker ps -a` to check
 * `docker start mysql-pos`
 * `docker exec -it mysql-pos mysql -u root -p`
@@ -20,8 +21,7 @@ mysql:8.0
 
 * for stop `docker stop mysql-pos`
 * for remove`docker rm mysql-pos`
-* 
-
+*
 
 ```
 spring.jpa.hibernate.ddl-auto=update

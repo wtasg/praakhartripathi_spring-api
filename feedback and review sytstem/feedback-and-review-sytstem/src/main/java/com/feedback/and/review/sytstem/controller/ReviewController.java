@@ -36,8 +36,8 @@ public class ReviewController {
 
     @GetMapping("/product/{productId}")
     public ResponseEntity<Page<Review>> getAllReviewsForProduct(
-            @PathVariable Long productId,
-            @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        @PathVariable Long productId,
+        @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Review> reviews = reviewService.getAllReviewsForProduct(productId, pageable);
         return new ResponseEntity<>(reviews, HttpStatus.OK);
     }

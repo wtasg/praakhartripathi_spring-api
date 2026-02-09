@@ -1,0 +1,80 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Build directories
+build/
+out/
+
+# IDEs
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.metadata/
+*.classpath
+*.project
+.settings/
+
+# VS Code
+.vscode/
+
+# Logs and temp files
+*.log
+logs/
+tmp/
+temp/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Linux / Ubuntu common
+*~
+.Trash-*
+.directory
+thumbs.db
+
+# Vim
+*.swp
+*.swo
+*.swn
+*.viminfo
+*.un~
+Session.vim
+swapfile
+
+# Misc
+env/
+venv/
+node_modules/
+coverage/
+.idea_modules/
+
+# Keep local environment files out of VCS
+.env
+.env.local
+.env.*.local

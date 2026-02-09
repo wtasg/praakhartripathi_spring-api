@@ -13,7 +13,6 @@
 * Contact Management API
 * Feedback / Review System
 
-
 ### Intermediate Level
 
 * Caching Proxy
@@ -27,7 +26,6 @@
 * Log Aggregation Service
 * File Storage Service
 * [github-builder-api.md](./github-builder-api.md)
-
 
 ### Advanced Level
 

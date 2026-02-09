@@ -1,4 +1,3 @@
-
 ---
 
 # Spring Boot OTP Login (Learning Project)
@@ -60,7 +59,7 @@ POST /api/auth/send-otp
 
 ```json
 {
-  "phone": "9999999999"
+    "phone": "9999999999"
 }
 ```
 
@@ -98,8 +97,8 @@ POST /api/auth/verify-otp
 
 ```json
 {
-  "phone": "9999999999",
-  "otp": "178396"
+    "phone": "9999999999",
+    "otp": "178396"
 }
 ```
 
@@ -133,9 +132,9 @@ You may see this error:
 
 ```json
 {
-  "status": 404,
-  "error": "Not Found",
-  "path": "/api/auth/verify-otp"
+    "status": 404,
+    "error": "Not Found",
+    "path": "/api/auth/verify-otp"
 }
 ```
 

@@ -1,4 +1,5 @@
 ## Index
+
 - [What is programming?](#what-is-programming)
 - [Compiler vs Interpreter](#compiler-vs-interpreter)
 
@@ -91,9 +92,8 @@ Behind the scenes, a programmer has written **clear instructions** for the compu
 
 ### One-Line Meaning (Remember This)
 
-> **Programming is teaching a machine how to solve problems by giving it clear instructions in a language it understands.**
-
-
+> **Programming is teaching a machine how to solve problems by giving it clear instructions in a language it
+understands.**
 
 # Compiler vs Interpreter
 
@@ -124,6 +124,7 @@ To cook the dish, you have two options:
 ### Option 1: The Compiler (Book Translator)
 
 You hire a translator who:
+
 - Translates the entire recipe at once
 - Gives you a complete translated book
 - You can then cook anytime without help
@@ -131,6 +132,7 @@ You hire a translator who:
 Translation happens once, before cooking.
 
 If there is a mistake in the recipe, the translator:
+
 - Finds all mistakes first
 - Refuses to give the book until everything is fixed
 
@@ -139,11 +141,13 @@ If there is a mistake in the recipe, the translator:
 ### Option 2: The Interpreter (Live Translator)
 
 You hire a live translator who:
+
 - Translates line by line
 - You cook step by step
 - Translator must be present every time you cook
 
 If there is a mistake:
+
 - Cooking stops immediately
 - You only know about the error at that step
 
@@ -154,16 +158,19 @@ If there is a mistake:
 ### Compiler
 
 A compiler:
+
 - Translates the entire source code into machine code
 - Produces a separate executable file
 - Executes after successful compilation
 
 Examples:
+
 - C
 - C++
 - Go
 
 Flow:
+
 ```
 Source Code → Compiler → Executable → Run
 ```
@@ -173,16 +180,19 @@ Source Code → Compiler → Executable → Run
 ### Interpreter
 
 An interpreter:
+
 - Translates and executes line by line
 - No separate executable file
 - Executes directly
 
 Examples:
+
 - Python
 - JavaScript
 - Ruby
 
 Flow:
+
 ```
 Source Code → Interpreter → Output (line by line)
 ```
@@ -191,20 +201,21 @@ Source Code → Interpreter → Output (line by line)
 
 ## Comparison Table
 
-| Feature | Compiler | Interpreter |
-|------|--------|------------|
-| Translation | Whole program at once | Line by line |
-| Error Handling | All errors shown together | Stops at first error |
-| Execution Speed | Faster | Slower |
-| Executable File | Yes | No |
-| Reusability | High | Low |
-| Memory Usage | More | Less |
+| Feature         | Compiler                  | Interpreter          |
+|-----------------|---------------------------|----------------------|
+| Translation     | Whole program at once     | Line by line         |
+| Error Handling  | All errors shown together | Stops at first error |
+| Execution Speed | Faster                    | Slower               |
+| Executable File | Yes                       | No                   |
+| Reusability     | High                      | Low                  |
+| Memory Usage    | More                      | Less                 |
 
 ---
 
 ## Real-Life Programming Example
 
 ### Compiler Language (C)
+
 ```
 #include <stdio.h>
 int main() {

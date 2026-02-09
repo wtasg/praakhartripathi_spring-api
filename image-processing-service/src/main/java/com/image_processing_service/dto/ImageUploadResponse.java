@@ -2,6 +2,7 @@ package com.image_processing_service.dto;
 
 import lombok.Builder;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Data

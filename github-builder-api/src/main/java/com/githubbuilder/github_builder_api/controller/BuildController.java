@@ -50,11 +50,11 @@ public class BuildController {
         Path userPath = copyService.copyToUser(jarFile, request.getTargetPath());
 
         return ResponseEntity.ok(
-                new ArtifactDistributionResponse(
-                        "SUCCESS",
-                        internalPath.toString(),
-                        userPath.toString()
-                )
+            new ArtifactDistributionResponse(
+                "SUCCESS",
+                internalPath.toString(),
+                userPath.toString()
+            )
         );
 
     }

@@ -1,11 +1,10 @@
-
-
 ---
 
 Task Tracker API
 
 A production-ready RESTful Task Tracker backend built using Spring Boot and PostgreSQL.
-This project demonstrates clean layered architecture, CRUD operations, filtering, pagination, and Dockerized database usage.
+This project demonstrates clean layered architecture, CRUD operations, filtering, pagination, and Dockerized database
+usage.
 
 ---
 

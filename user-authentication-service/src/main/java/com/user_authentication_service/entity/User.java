@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(
-        name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username")
-        }
+    name = "users",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username")
+    }
 )
 public class User {
     @Id

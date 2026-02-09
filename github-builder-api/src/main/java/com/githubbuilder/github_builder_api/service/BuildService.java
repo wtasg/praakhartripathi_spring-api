@@ -18,7 +18,7 @@ public class BuildService {
             processBuilder.redirectErrorStream(true);
 
             Process process = processBuilder.start();
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                 while (reader.readLine() != null) {
                 }
             }
@@ -33,25 +33,26 @@ public class BuildService {
     }
 
     public void buildGradleProject(Path repoPath) {
-            try {
-                ProcessBuilder processBuilder = new ProcessBuilder("./gradlew", "build");
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder("./gradlew", "build");
 
-                processBuilder.directory(repoPath.toFile());
-                processBuilder.redirectErrorStream(true);
+            processBuilder.directory(repoPath.toFile());
+            processBuilder.redirectErrorStream(true);
 
-                Process process = processBuilder.start();
+            Process process = processBuilder.start();
 
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-                    while(reader.readLine() != null) {}
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                while (reader.readLine() != null) {
                 }
-                int exitCode = process.waitFor();
-
-                if(exitCode != 0) {
-                    throw new RuntimeException("Gradle build failed");
-                }
-            } catch (Exception e) {
-                throw new RuntimeException("Gradle build execution failed" , e);
             }
+            int exitCode = process.waitFor();
+
+            if (exitCode != 0) {
+                throw new RuntimeException("Gradle build failed");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Gradle build execution failed", e);
+        }
     }
 
     public Path getArtifactPath(Path repoPath) {
@@ -68,9 +69,9 @@ public class BuildService {
 
         try {
             return Files.list(outputDir)
-                    .filter(p -> p.toString().endsWith(".jar"))
-                    .findFirst()
-                    .orElseThrow(() -> new RuntimeException("No JAR found"));
+                .filter(p -> p.toString().endsWith(".jar"))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No JAR found"));
         } catch (IOException e) {
             throw new RuntimeException("Failed to locate artifact", e);
         }

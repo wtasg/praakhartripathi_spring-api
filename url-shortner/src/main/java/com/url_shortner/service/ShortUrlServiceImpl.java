@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class ShortUrlServiceImpl implements ShortUrlService{
+public class ShortUrlServiceImpl implements ShortUrlService {
     private final ShortUrlRepository shortUrlRepository;
     private final UrlCodeGenerator urlCodeGenerator;
 
@@ -38,8 +38,8 @@ public class ShortUrlServiceImpl implements ShortUrlService{
 
         shortUrlRepository.save(shortUrl);
         return new CreateShortUrlResponse(
-                baseUrl + "/u/" + code,
-                code
+            baseUrl + "/u/" + code,
+            code
         );
     }
 
@@ -75,9 +75,9 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         ShortUrl shortUrl = optionalShortUrl.get();
 
         return new GetOriginalUrlResponse(
-                shortUrl.getOriginalUrl(),
-                shortUrl.getCode(),
-                shortUrl.getCreatedAt()
+            shortUrl.getOriginalUrl(),
+            shortUrl.getCode(),
+            shortUrl.getCreatedAt()
         );
     }
 
@@ -92,10 +92,10 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         ShortUrl shortUrl = optionalShortUrl.get();
 
         return new UrlDetailsResponse(
-                shortUrl.getOriginalUrl(),
-                shortUrl.getCreatedAt(),
-                shortUrl.getExpiresAt(),
-                shortUrl.getClickCount()
+            shortUrl.getOriginalUrl(),
+            shortUrl.getCreatedAt(),
+            shortUrl.getExpiresAt(),
+            shortUrl.getClickCount()
         );
     }
 
@@ -121,8 +121,8 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         ShortUrl shortUrl = optionalShortUrl.get();
 
         return new UrlAnalyticsResponse(
-                shortUrl.getClickCount(),
-                shortUrl.getLastAccessedAt()
+            shortUrl.getClickCount(),
+            shortUrl.getLastAccessedAt()
         );
     }
 }

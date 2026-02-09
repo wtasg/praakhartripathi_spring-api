@@ -9,7 +9,10 @@ import java.util.Map;
 
 public interface UserService {
     void registerUser(RegisterRequest request);
+
     Map<String, Object> login(LoginRequest request);
+
     UserProfileResponse getLoggedInUserProfile(String email);
+
     UserProfileResponse getUserById(Long userId);
 }

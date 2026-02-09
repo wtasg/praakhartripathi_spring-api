@@ -14,9 +14,9 @@ public class CacheConfig {
     public CacheManager cacheManager() {
         CaffeineCacheManager manager = new CaffeineCacheManager("proxyCache");
         manager.setCaffeine(
-                Caffeine.newBuilder()
-                        .expireAfterWrite(10, TimeUnit.MINUTES)
-                        .maximumSize(1000)
+            Caffeine.newBuilder()
+                .expireAfterWrite(10, TimeUnit.MINUTES)
+                .maximumSize(1000)
         );
         return manager;
     }

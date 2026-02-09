@@ -12,8 +12,8 @@ Currently, it integrates with the **OMDb API** to fetch movie and series data.
 * 🔍 **Search Movies and TV Shows** by title
 * 🎞️ **Get detailed information** using:
 
-  * IMDb ID
-  * Movie / Series title
+    * IMDb ID
+    * Movie / Series title
 * ⭐ **Popular Movies & TV Shows** (simulated using curated keyword searches)
 * 🏆 **Top Rated Movies & TV Shows** (simulated using IMDb data)
 * 🌐 **RESTful APIs** for easy integration with frontend or CLI tools
@@ -216,8 +216,8 @@ src/main/java/com/TMDB_CLI_Tool
 * OMDb does **not** provide real popularity or trending endpoints
 * “Popular” and “Top Rated” APIs are **simulated** using:
 
-  * IMDb Top movie IDs
-  * Franchise-based keyword searches
+    * IMDb Top movie IDs
+    * Franchise-based keyword searches
 * The architecture allows **easy switching** to TMDB or other providers in the future
 
 ---

@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CommentServiceImpl implements CommentService{
+public class CommentServiceImpl implements CommentService {
     private final BlogRepository blogRepository;
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService{
 
     public CommentResponse createComment(Long blogId, CreateCommentRequest request, String userEmail) {
         Optional<Blog> optionalBlog = blogRepository.findById(blogId);
-        if(optionalBlog.isEmpty()) {
+        if (optionalBlog.isEmpty()) {
             throw new RuntimeException("Blog not found with it" + blogId);
         }
         Blog blog = optionalBlog.get();
@@ -65,10 +65,10 @@ public class CommentServiceImpl implements CommentService{
         if (!blogRepository.existsById(blogId)) {
             throw new RuntimeException("Blog not found with id" + blogId);
         }
-        
+
         List<Comment> comments = commentRepository.findByBlog_IdOrderByCreatedAtDesc(blogId);
         List<CommentResponse> responses = new ArrayList<>();
-        
+
         for (Comment comment : comments) {
             CommentResponse response = new CommentResponse();
             response.setId(comment.getId());

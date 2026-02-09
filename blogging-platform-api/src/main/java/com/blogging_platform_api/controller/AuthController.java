@@ -28,10 +28,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register (@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request) {
         userService.registerUser(request);
         return ResponseEntity.status((HttpStatus.CREATED))
-                .body("User Registered successfully");
+            .body("User Registered successfully");
     }
 
     @PostMapping("/login")

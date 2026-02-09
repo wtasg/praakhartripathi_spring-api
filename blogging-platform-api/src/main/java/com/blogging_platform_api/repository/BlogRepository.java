@@ -11,7 +11,9 @@ import java.util.List;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Long> {
     List<Blog> findByAuthorId(Long userId);
+
     List<Blog> findByCategories_IdOrderByCreatedAtDesc(Long categoryId);
+
     @Query("SELECT COUNT(u) FROM Blog b JOIN b.likedByUsers u WHERE b.id = :blogId")
     long countLikesByBlogId(@Param("blogId") Long blogId);
 }

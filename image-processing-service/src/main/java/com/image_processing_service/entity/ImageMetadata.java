@@ -2,6 +2,7 @@ package com.image_processing_service.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Entity

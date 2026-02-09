@@ -58,11 +58,11 @@ public class WorkoutServiceImpl implements WorkoutService {
         }
 
         Workout workout = new Workout(
-                user,
-                workoutRequest.getDate(),
-                workoutRequest.getDuration(),
-                workoutRequest.getType(),
-                workoutRequest.getNotes()
+            user,
+            workoutRequest.getDate(),
+            workoutRequest.getDuration(),
+            workoutRequest.getType(),
+            workoutRequest.getNotes()
         );
 
         workoutRepository.save(workout);
@@ -79,14 +79,14 @@ public class WorkoutServiceImpl implements WorkoutService {
 
         List<Workout> workouts = workoutRepository.findByUserId(user.getId());
         List<WorkoutResponse> response = workouts.stream()
-                .map(workout -> new WorkoutResponse(
-                        workout.getId(),
-                        workout.getDate(),
-                        workout.getDuration(),
-                        workout.getType(),
-                        workout.getNotes()
-                ))
-                .collect(Collectors.toList());
+            .map(workout -> new WorkoutResponse(
+                workout.getId(),
+                workout.getDate(),
+                workout.getDuration(),
+                workout.getType(),
+                workout.getNotes()
+            ))
+            .collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
@@ -109,11 +109,11 @@ public class WorkoutServiceImpl implements WorkoutService {
         }
 
         return ResponseEntity.ok(new WorkoutResponse(
-                workout.getId(),
-                workout.getDate(),
-                workout.getDuration(),
-                workout.getType(),
-                workout.getNotes()
+            workout.getId(),
+            workout.getDate(),
+            workout.getDuration(),
+            workout.getType(),
+            workout.getNotes()
         ));
     }
 
@@ -178,14 +178,14 @@ public class WorkoutServiceImpl implements WorkoutService {
 
         List<Workout> workouts = workoutRepository.findByUserIdAndDateBetween(user.getId(), startOfDay, endOfDay);
         List<WorkoutResponse> response = workouts.stream()
-                .map(workout -> new WorkoutResponse(
-                        workout.getId(),
-                        workout.getDate(),
-                        workout.getDuration(),
-                        workout.getType(),
-                        workout.getNotes()
-                ))
-                .collect(Collectors.toList());
+            .map(workout -> new WorkoutResponse(
+                workout.getId(),
+                workout.getDate(),
+                workout.getDuration(),
+                workout.getType(),
+                workout.getNotes()
+            ))
+            .collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
@@ -203,14 +203,14 @@ public class WorkoutServiceImpl implements WorkoutService {
 
         List<Workout> workouts = workoutRepository.findByUserIdAndDateBetween(user.getId(), startOfWeek, endOfWeek);
         List<WorkoutResponse> response = workouts.stream()
-                .map(workout -> new WorkoutResponse(
-                        workout.getId(),
-                        workout.getDate(),
-                        workout.getDuration(),
-                        workout.getType(),
-                        workout.getNotes()
-                ))
-                .collect(Collectors.toList());
+            .map(workout -> new WorkoutResponse(
+                workout.getId(),
+                workout.getDate(),
+                workout.getDuration(),
+                workout.getType(),
+                workout.getNotes()
+            ))
+            .collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
@@ -228,14 +228,14 @@ public class WorkoutServiceImpl implements WorkoutService {
 
         List<Workout> workouts = workoutRepository.findByUserIdAndDateBetween(user.getId(), startOfMonth, endOfMonth);
         List<WorkoutResponse> response = workouts.stream()
-                .map(workout -> new WorkoutResponse(
-                        workout.getId(),
-                        workout.getDate(),
-                        workout.getDuration(),
-                        workout.getType(),
-                        workout.getNotes()
-                ))
-                .collect(Collectors.toList());
+            .map(workout -> new WorkoutResponse(
+                workout.getId(),
+                workout.getDate(),
+                workout.getDuration(),
+                workout.getType(),
+                workout.getNotes()
+            ))
+            .collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
@@ -275,11 +275,11 @@ public class WorkoutServiceImpl implements WorkoutService {
 
             for (Workout workout : workouts) {
                 String[] data = {
-                        String.valueOf(workout.getId()),
-                        workout.getDate().toString(),
-                        String.valueOf(workout.getDuration()),
-                        workout.getType(),
-                        workout.getNotes()
+                    String.valueOf(workout.getId()),
+                    workout.getDate().toString(),
+                    String.valueOf(workout.getDuration()),
+                    workout.getType(),
+                    workout.getNotes()
                 };
                 writer.writeNext(data);
             }

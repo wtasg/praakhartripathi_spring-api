@@ -1,6 +1,7 @@
 package com.workout_tracker.dto;
 
 import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 public class WorkoutRequest {

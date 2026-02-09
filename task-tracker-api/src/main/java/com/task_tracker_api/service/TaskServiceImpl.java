@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TaskServiceImpl implements TaskService{
+public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
 
     public TaskServiceImpl(TaskRepository taskRepository) {
@@ -62,11 +62,11 @@ public class TaskServiceImpl implements TaskService{
 
         Task task = optionalTask.get();
 
-        if(request.getTitle() != null) {
+        if (request.getTitle() != null) {
             task.setTitle(request.getTitle());
         }
 
-        if(request.getDescription() != null) {
+        if (request.getDescription() != null) {
             task.setDescription(request.getDescription());
         }
 

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Collections;
 
 @Component
-public class JwtAuthenticationFilter extends OncePerRequestFilter{
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
 
@@ -29,9 +29,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
     @Override
     protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
+        HttpServletRequest request,
+        HttpServletResponse response,
+        FilterChain filterChain
     ) throws ServletException, IOException {
 
         String authHeader = request.getHeader("Authorization");
@@ -47,16 +47,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
                 if (user != null) {
                     UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(
-                                    email,
-                                    null,
-                                    Collections.singletonList(
-                                            new SimpleGrantedAuthority(user.getRole().name())
-                                    )
-                            );
+                        new UsernamePasswordAuthenticationToken(
+                            email,
+                            null,
+                            Collections.singletonList(
+                                new SimpleGrantedAuthority(user.getRole().name())
+                            )
+                        );
 
                     authentication.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request)
+                        new WebAuthenticationDetailsSource().buildDetails(request)
                     );
 
                     SecurityContextHolder.getContext().setAuthentication(authentication);

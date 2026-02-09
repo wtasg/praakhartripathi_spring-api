@@ -14,16 +14,15 @@ It behaves like a **mini CI/CD pipeline** and is fully operable via REST APIs us
 * Build Java projects automatically
 * Generate JAR artifacts
 * Copy build artifacts to:
-
-  * Internal server storage
-  * User-defined destination path
+    * Internal server storage
+    * User-defined destination path
 * Clean layered architecture
 * Centralized exception handling
 * API-only (no frontend)
 
 ---
 
-##  High-Level Workflow
+## High-Level Workflow
 
 ```
 Clone Repository
@@ -81,7 +80,7 @@ github-builder-api
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 * Java 21
 * Spring Boot
@@ -93,7 +92,7 @@ github-builder-api
 
 ---
 
-##  Prerequisites
+## Prerequisites
 
 Ensure the following are installed:
 
@@ -110,16 +109,16 @@ JAVA_HOME
 
 ---
 
-##  API Endpoints
+## API Endpoints
 
-###  Clone GitHub Repository
+### Clone GitHub Repository
 
 **POST** `/api/github/clone`
 
 ```json
 {
-  "githubUrl": "https://github.com/user/repo",
-  "targetPath": "/home/user/clones/repo"
+    "githubUrl": "https://github.com/user/repo",
+    "targetPath": "/home/user/clones/repo"
 }
 ```
 
@@ -137,7 +136,7 @@ Repository cloned successfully
 
 ```json
 {
-  "repoPath": "/home/user/clones/repo"
+    "repoPath": "/home/user/clones/repo"
 }
 ```
 
@@ -145,14 +144,14 @@ Response:
 
 ```json
 {
-  "repoPath": "/home/user/clones/repo",
-  "projectType": "MAVEN"
+    "repoPath": "/home/user/clones/repo",
+    "projectType": "MAVEN"
 }
 ```
 
 ---
 
-###  Build Project and Copy Artifacts
+### Build Project and Copy Artifacts
 
 This endpoint builds the project and copies the generated JAR to both internal and user-defined locations.
 
@@ -160,8 +159,8 @@ This endpoint builds the project and copies the generated JAR to both internal a
 
 ```json
 {
-  "repoPath": "/home/user/clones/repo",
-  "targetPath": "/home/user/output"
+    "repoPath": "/home/user/clones/repo",
+    "targetPath": "/home/user/output"
 }
 ```
 
@@ -169,15 +168,15 @@ Response:
 
 ```json
 {
-  "status": "SUCCESS",
-  "internalPath": "storage/builds/repo/app.jar",
-  "userPath": "/home/user/output/app.jar"
+    "status": "SUCCESS",
+    "internalPath": "storage/builds/repo/app.jar",
+    "userPath": "/home/user/output/app.jar"
 }
 ```
 
 ---
 
-##  Example End-to-End Usage (curl)
+## Example End-to-End Usage (curl)
 
 ### Clone Repository
 
@@ -217,7 +216,7 @@ curl -X POST http://localhost:8080/api/github/build \
 
 ---
 
-##  Artifact Storage
+## Artifact Storage
 
 ### Internal Storage
 
@@ -239,7 +238,7 @@ storage/builds/meetonline/hrms-0.0.1-SNAPSHOT.jar
 
 ---
 
-##  Error Handling
+## Error Handling
 
 Centralized exception handling using `@RestControllerAdvice`.
 
@@ -257,7 +256,7 @@ Centralized exception handling using `@RestControllerAdvice`.
 
 ---
 
-##  Future Enhancements
+## Future Enhancements
 
 * Asynchronous build jobs
 * Build log streaming
@@ -268,13 +267,13 @@ Centralized exception handling using `@RestControllerAdvice`.
 
 ---
 
-##  License
+## License
 
 This project is open for learning and educational purposes.
 
 ---
 
-#  Author
+# Author
 
 **Prakhar Tripathi**
 Spring Boot | Java | Backend | DevOps Automation

@@ -65,21 +65,21 @@ public class WebSecurityConfig {
                 csrf.disable();
             }
         });
-        
+
         http.exceptionHandling(new Customizer<ExceptionHandlingConfigurer<HttpSecurity>>() {
             @Override
             public void customize(ExceptionHandlingConfigurer<HttpSecurity> exception) {
                 exception.authenticationEntryPoint(unauthorizedHandler);
             }
         });
-        
+
         http.sessionManagement(new Customizer<SessionManagementConfigurer<HttpSecurity>>() {
             @Override
             public void customize(SessionManagementConfigurer<HttpSecurity> session) {
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
             }
         });
-        
+
         http.authorizeHttpRequests(new Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry>() {
             @Override
             public void customize(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry auth) {

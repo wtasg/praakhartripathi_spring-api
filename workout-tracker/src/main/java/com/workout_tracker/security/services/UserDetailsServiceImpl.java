@@ -21,11 +21,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> userOptional = userRepository.findByEmail(email);
-        
+
         if (userOptional.isEmpty()) {
             throw new UsernameNotFoundException("User Not Found with email: " + email);
         }
-        
+
         User user = userOptional.get();
 
         return UserDetailsImpl.build(user);

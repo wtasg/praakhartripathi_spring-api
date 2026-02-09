@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "category",
-        uniqueConstraints = @UniqueConstraint(columnNames = "name")
-    )
+    name = "category",
+    uniqueConstraints = @UniqueConstraint(columnNames = "name")
+)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -32,7 +32,7 @@ public class BlogController {
 
     @GetMapping("/getAllBlogs")
     public ResponseEntity<PagedResponse<BlogResponse>> getAllBlogs(@RequestParam(defaultValue = "0") int page,
-                                                                   @RequestParam(defaultValue = "10")int size,
+                                                                   @RequestParam(defaultValue = "10") int size,
                                                                    @RequestParam(defaultValue = "createdAt,desc") String sort) {
         PagedResponse<BlogResponse> response = blogService.getAllBlogs(page, size, sort);
         return ResponseEntity.ok(response);
@@ -44,7 +44,7 @@ public class BlogController {
     }
 
     @PutMapping("/{blogId}")
-    public ResponseEntity<BlogResponse> updateBlog(@PathVariable Long blogId, @Valid @RequestBody UpdateBlogRequest  request, Authentication authentication) {
+    public ResponseEntity<BlogResponse> updateBlog(@PathVariable Long blogId, @Valid @RequestBody UpdateBlogRequest request, Authentication authentication) {
         String email = authentication.getName();
         BlogResponse response = blogService.updateBlog(blogId, request, email);
         return ResponseEntity.ok(response);

@@ -2,6 +2,7 @@ package com.workout_tracker.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class UpdateProfileRequest {

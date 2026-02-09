@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 public class CreateShortUrlRequest {
     @NotBlank(message = "Original Url must not be blank")
     @Pattern(
-            regexp = "^(http|https)://.*$",
-            message = "Invalid URL format"
+        regexp = "^(http|https)://.*$",
+        message = "Invalid URL format"
     )
     private String originalUrl;
     private LocalDateTime expiresAt;

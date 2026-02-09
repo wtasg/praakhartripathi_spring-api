@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private static final String SECRET_KEY ="uifhfjafvcnasdkfjdsbdsjhgfdsakfgblkoasfhalfhagffgdfgdsakf";
+    private static final String SECRET_KEY = "uifhfjafvcnasdkfjdsbdsjhgfdsakfgblkoasfhalfhagffgdfgdsakf";
     private static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000;
 
     private Key getSigningKey() {
@@ -20,11 +20,11 @@ public class JwtUtil {
 
     public String generateToken(String username) {
         return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
-                .compact();
+            .setSubject(username)
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+            .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+            .compact();
     }
 
     public String extractUsername(String token) {
@@ -32,7 +32,7 @@ public class JwtUtil {
     }
 
     public boolean isTokenValid(String token, String username) {
-        final String extractUsername  = extractUsername(token);
+        final String extractUsername = extractUsername(token);
         return extractUsername.equals(username) && !isTokenExpired(token);
     }
 
@@ -42,9 +42,9 @@ public class JwtUtil {
 
     private Claims extractClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(getSigningKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+            .setSigningKey(getSigningKey())
+            .build()
+            .parseClaimsJws(token)
+            .getBody();
     }
 }

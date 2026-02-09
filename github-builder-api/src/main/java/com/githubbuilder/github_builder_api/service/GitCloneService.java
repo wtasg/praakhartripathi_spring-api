@@ -13,13 +13,13 @@ public class GitCloneService {
         try {
             Path targetDir = Paths.get(targetPath);
 
-            if(Files.exists((targetDir))) {
+            if (Files.exists((targetDir))) {
                 throw new IllegalStateException("Target directory already exists " + targetPath);
             }
             Git.cloneRepository()
-                    .setURI(githubUrl)
-                    .setDirectory(targetDir.toFile())
-                    .call();
+                .setURI(githubUrl)
+                .setDirectory(targetDir.toFile())
+                .call();
 
             return targetDir;
 

@@ -23,7 +23,7 @@ public class OtpService {
 
     public boolean verifyOtp(String phone, String otp) {
         OtpData storedOtpData = otpStore.get(phone);
-        if(storedOtpData == null) {
+        if (storedOtpData == null) {
             return false;
         }
 

@@ -21,7 +21,7 @@ import java.util.*;
 
 @Service
 @Transactional
-public class BlogServiceImpl implements BlogService{
+public class BlogServiceImpl implements BlogService {
     private final BlogRepository blogRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
@@ -86,7 +86,7 @@ public class BlogServiceImpl implements BlogService{
         List<BlogResponse> blogs = new ArrayList<>();
 
         for (Blog blog : blogPage.getContent()) {
-            BlogResponse response= new BlogResponse();
+            BlogResponse response = new BlogResponse();
             response.setId(blog.getId());
             response.setTitle(blog.getTitle());
             response.setContent(blog.getContent());
@@ -141,7 +141,7 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public BlogResponse updateBlog(Long blogId, UpdateBlogRequest request, String loggedInUserEmail) {
         Optional<Blog> optionalBlog = blogRepository.findById(blogId);
-        if(optionalBlog.isEmpty()) {
+        if (optionalBlog.isEmpty()) {
             throw new RuntimeException("Blog not found with id :" + blogId);
         }
         Blog blog = optionalBlog.get();
@@ -183,7 +183,7 @@ public class BlogServiceImpl implements BlogService{
     public void deleteBlog(Long blogId, String loggedInUserEmail) {
         Optional<Blog> optionalBlog = blogRepository.findById(blogId);
 
-        if(optionalBlog.isEmpty()) {
+        if (optionalBlog.isEmpty()) {
             throw new RuntimeException("blog not found with id" + blogId);
         }
 

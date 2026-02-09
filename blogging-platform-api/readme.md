@@ -48,7 +48,6 @@ This backend application allows users to register, authenticate, create blogs, l
 * Jakarta Validation
 * Maven
 
-
 ---
 
 ## Authentication Flow
@@ -71,7 +70,7 @@ Authorization: Bearer <JWT_TOKEN>
 ### Auth Controller (`/api/auth`)
 
 | Method | Endpoint    | Description                |
-| ------ | ----------- | -------------------------- |
+|--------|-------------|----------------------------|
 | POST   | `/register` | Register a new user        |
 | POST   | `/login`    | Login user and receive JWT |
 | GET    | `/me`       | Get logged-in user profile |
@@ -82,7 +81,7 @@ Authorization: Bearer <JWT_TOKEN>
 ### Blog Controller (`/api/blogs`)
 
 | Method | Endpoint                | Description                               |
-| ------ | ----------------------- | ----------------------------------------- |
+|--------|-------------------------|-------------------------------------------|
 | POST   | `/create`               | Create a new blog                         |
 | GET    | `/getAllBlogs`          | Get all blogs with pagination and sorting |
 | GET    | `/{blogId}`             | Get blog by ID                            |
@@ -97,7 +96,7 @@ Authorization: Bearer <JWT_TOKEN>
 ### Category Controller (`/api/categories`)
 
 | Method | Endpoint              | Description           |
-| ------ | --------------------- | --------------------- |
+|--------|-----------------------|-----------------------|
 | POST   | `/create`             | Create category       |
 | GET    | `/all`                | Get all categories    |
 | GET    | `/{categoryId}/blogs` | Get blogs by category |
@@ -107,7 +106,7 @@ Authorization: Bearer <JWT_TOKEN>
 ### Comment Controller (`/api/blogs`)
 
 | Method | Endpoint                         | Description             |
-| ------ | -------------------------------- | ----------------------- |
+|--------|----------------------------------|-------------------------|
 | POST   | `/{blogId}/comments`             | Add comment to blog     |
 | GET    | `/{blogId}/comments`             | Get comments for a blog |
 | DELETE | `/{blogId}/comments/{commentId}` | Delete comment          |

@@ -23,7 +23,7 @@ public class ShortUrlController {
         CreateShortUrlResponse response = shortUrlService.createShortUrl(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(response);
+            .body(response);
     }
 
     @PostMapping("/api/v1/urls/expire")
@@ -31,7 +31,7 @@ public class ShortUrlController {
         CreateShortUrlResponse response = shortUrlService.createShortUrl(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(response);
+            .body(response);
     }
 
     @GetMapping("/u/{shortCode}")

@@ -36,26 +36,26 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<MessageResponse> registerUser(SignupRequest signUpRequest) {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                .badRequest()
+                .body(new MessageResponse("Error: Email is already in use!"));
         }
 
         if (!signUpRequest.getPassword().equals(signUpRequest.getConfirmPassword())) {
             return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Passwords do not match!"));
+                .badRequest()
+                .body(new MessageResponse("Error: Passwords do not match!"));
         }
 
         // Create new user's account
         User user = new User(
-                signUpRequest.getFullName(),
-                signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getMobileNumber(),
-                signUpRequest.getGender(),
-                signUpRequest.getDateOfBirth(),
-                signUpRequest.getCountry(),
-                signUpRequest.getTimeZone()
+            signUpRequest.getFullName(),
+            signUpRequest.getEmail(),
+            encoder.encode(signUpRequest.getPassword()),
+            signUpRequest.getMobileNumber(),
+            signUpRequest.getGender(),
+            signUpRequest.getDateOfBirth(),
+            signUpRequest.getCountry(),
+            signUpRequest.getTimeZone()
         );
 
         userRepository.save(user);
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<JwtResponse> authenticateUser(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+            new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -74,9 +74,9 @@ public class UserServiceImpl implements UserService {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail()));
+            userDetails.getId(),
+            userDetails.getUsername(),
+            userDetails.getEmail()));
     }
 
     @Override
@@ -139,14 +139,14 @@ public class UserServiceImpl implements UserService {
 
         User user = userOptional.get();
         UserProfileResponse response = new UserProfileResponse(
-                user.getId(),
-                user.getFullName(),
-                user.getEmail(),
-                user.getMobileNumber(),
-                user.getGender(),
-                user.getDateOfBirth(),
-                user.getCountry(),
-                user.getTimeZone()
+            user.getId(),
+            user.getFullName(),
+            user.getEmail(),
+            user.getMobileNumber(),
+            user.getGender(),
+            user.getDateOfBirth(),
+            user.getCountry(),
+            user.getTimeZone()
         );
 
         return ResponseEntity.ok(response);

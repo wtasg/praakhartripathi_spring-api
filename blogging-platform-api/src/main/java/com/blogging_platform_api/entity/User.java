@@ -26,7 +26,8 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public User() {}
+    public User() {
+    }
 
     public User(Long id, String name, String email, String username, String password, Role role, boolean enabled, LocalDateTime createdAt) {
         this.id = id;

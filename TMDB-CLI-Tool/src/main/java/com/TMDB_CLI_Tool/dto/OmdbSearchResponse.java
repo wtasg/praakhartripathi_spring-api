@@ -1,6 +1,7 @@
 package com.TMDB_CLI_Tool.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class OmdbSearchResponse {
@@ -22,6 +23,10 @@ public class OmdbSearchResponse {
         return search;
     }
 
+    public void setSearch(List<MovieDto> search) {
+        this.search = search;
+    }
+
     public String getTotalResults() {
         return totalResults;
     }
@@ -38,16 +43,12 @@ public class OmdbSearchResponse {
         this.response = response;
     }
 
-    public void setSearch(List<MovieDto> search) {
-        this.search = search;
-    }
-
     @Override
     public String toString() {
         return "OmdbsearchResponse{" +
-                "search=" + search +
-                ", totalResults='" + totalResults + '\'' +
-                ", Response='" + response + '\'' +
-                '}';
+            "search=" + search +
+            ", totalResults='" + totalResults + '\'' +
+            ", Response='" + response + '\'' +
+            '}';
     }
 }

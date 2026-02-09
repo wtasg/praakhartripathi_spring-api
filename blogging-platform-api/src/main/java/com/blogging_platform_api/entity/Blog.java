@@ -22,23 +22,24 @@ public class Blog {
     private User author;
     @ManyToMany
     @JoinTable(
-            name = "blog_categories",
-            joinColumns = @JoinColumn(name = "blog_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+        name = "blog_categories",
+        joinColumns = @JoinColumn(name = "blog_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories = new HashSet<>();
     @ManyToMany
     @JoinTable(
-            name = "blog_likes",
-            joinColumns = @JoinColumn(name = "blog_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+        name = "blog_likes",
+        joinColumns = @JoinColumn(name = "blog_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> likedByUsers = new HashSet<>();
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    public Blog() {}
+    public Blog() {
+    }
 
     public Blog(Long id, String title, String content, User author, Set<Category> categories, Set<User> likedByUsers, LocalDateTime createdAt) {
         this.id = id;
@@ -86,16 +87,16 @@ public class Blog {
         return categories;
     }
 
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
     public Set<User> getLikedByUsers() {
         return likedByUsers;
     }
 
     public void setLikedByUsers(Set<User> likedByUsers) {
         this.likedByUsers = likedByUsers;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
     }
 
     public LocalDateTime getCreatedAt() {

@@ -69,10 +69,10 @@ public class MovieDto {
     @Override
     public String toString() {
         return "MovieDto{" +
-                "title='" + title + '\'' +
-                ", year='" + year + '\'' +
-                ", imdbID='" + imdbId + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+            "title='" + title + '\'' +
+            ", year='" + year + '\'' +
+            ", imdbID='" + imdbId + '\'' +
+            ", type='" + type + '\'' +
+            '}';
     }
 }

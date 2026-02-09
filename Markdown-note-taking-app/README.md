@@ -1,6 +1,8 @@
 # Markdown Note-Taking Application
 
-A Spring Boot-based REST application enabling users to create, edit, and manage Markdown notes. This application implements Markdown-to-HTML rendering using CommonMark, RESTful APIs with Spring Data JPA, and secure note storage with PostgreSQL.
+A Spring Boot-based REST application enabling users to create, edit, and manage Markdown notes. This application
+implements Markdown-to-HTML rendering using CommonMark, RESTful APIs with Spring Data JPA, and secure note storage with
+PostgreSQL.
 
 ## Features
 
@@ -53,14 +55,17 @@ The application will start on `http://localhost:8080`.
 ## API Endpoints
 
 ### 1. Get All Notes
+
 - **URL**: `/api/notes`
 - **Method**: `GET`
 
 ### 2. Get Note by ID
+
 - **URL**: `/api/notes/{id}`
 - **Method**: `GET`
 
 ### 3. Create a Note
+
 - **URL**: `/api/notes`
 - **Method**: `POST`
 - **Body**:
@@ -72,6 +77,7 @@ The application will start on `http://localhost:8080`.
   ```
 
 ### 4. Update a Note
+
 - **URL**: `/api/notes/{id}`
 - **Method**: `PUT`
 - **Body**:
@@ -83,5 +89,6 @@ The application will start on `http://localhost:8080`.
   ```
 
 ### 5. Delete a Note
+
 - **URL**: `/api/notes/{id}`
 - **Method**: `DELETE`

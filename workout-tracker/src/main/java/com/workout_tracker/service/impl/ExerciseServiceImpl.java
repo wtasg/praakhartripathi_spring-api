@@ -63,11 +63,11 @@ public class ExerciseServiceImpl implements ExerciseService {
         }
 
         Exercise exercise = new Exercise(
-                exerciseRequest.getName(),
-                exerciseRequest.getSets(),
-                exerciseRequest.getReps(),
-                exerciseRequest.getWeight(),
-                workout
+            exerciseRequest.getName(),
+            exerciseRequest.getSets(),
+            exerciseRequest.getReps(),
+            exerciseRequest.getWeight(),
+            workout
         );
 
         exerciseRepository.save(exercise);
@@ -94,14 +94,14 @@ public class ExerciseServiceImpl implements ExerciseService {
 
         List<Exercise> exercises = exerciseRepository.findByWorkoutId(workoutId);
         List<ExerciseResponse> response = exercises.stream()
-                .map(exercise -> new ExerciseResponse(
-                        exercise.getId(),
-                        exercise.getName(),
-                        exercise.getSets(),
-                        exercise.getReps(),
-                        exercise.getWeight()
-                ))
-                .collect(Collectors.toList());
+            .map(exercise -> new ExerciseResponse(
+                exercise.getId(),
+                exercise.getName(),
+                exercise.getSets(),
+                exercise.getReps(),
+                exercise.getWeight()
+            ))
+            .collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
@@ -134,11 +134,11 @@ public class ExerciseServiceImpl implements ExerciseService {
         }
 
         return ResponseEntity.ok(new ExerciseResponse(
-                exercise.getId(),
-                exercise.getName(),
-                exercise.getSets(),
-                exercise.getReps(),
-                exercise.getWeight()
+            exercise.getId(),
+            exercise.getName(),
+            exercise.getSets(),
+            exercise.getReps(),
+            exercise.getWeight()
         ));
     }
 

@@ -10,10 +10,16 @@ import java.util.List;
 
 public interface TaskService {
     Task createTask(TaskRequest request);
+
     List<Task> getAllTask();
+
     Task getTaskById(Long id);
+
     Task updateTask(Long id, TaskUpdateRequest request);
+
     void deleteTask(Long id);
+
     List<Task> getTaskByStatus(TaskStatus taskStatus);
+
     Page<Task> getTasksWithPagination(int page, int size, String sortBy, String sortDir);
 }

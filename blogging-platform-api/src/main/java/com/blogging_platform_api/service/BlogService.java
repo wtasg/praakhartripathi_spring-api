@@ -10,12 +10,20 @@ import java.util.List;
 
 public interface BlogService {
     BlogResponse createBlog(CreateBlogRequest request, String authorEmail);
+
     PagedResponse<BlogResponse> getAllBlogs(int page, int size, String sort);
+
     BlogResponse getBlogById(Long blogId);
+
     BlogResponse updateBlog(Long blogId, UpdateBlogRequest request, String loggedInUserEmail);
+
     void deleteBlog(Long blogId, String loggedInUserEmail);
+
     List<BlogResponse> getBlogsByUserId(Long userId);
+
     BlogResponse likeBlog(Long blogId, String userEmail);
+
     List<BlogResponse> getBlogsByCategories(Long categoryId);
+
     long getBlogLikeCount(Long blogId);
 }

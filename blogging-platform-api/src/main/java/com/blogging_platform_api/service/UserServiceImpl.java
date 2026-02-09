@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -63,12 +63,12 @@ public class UserServiceImpl implements UserService{
         String token = jwtUtil.generateToken(user.getEmail());
 
         return Map.of(
-                "message", "Login successfully",
-                "token", token,
-                "userId", user.getId(),
-                "email", user.getEmail(),
-                "username", user.getUsername(),
-                "role", user.getRole().name()
+            "message", "Login successfully",
+            "token", token,
+            "userId", user.getId(),
+            "email", user.getEmail(),
+            "username", user.getUsername(),
+            "role", user.getRole().name()
         );
     }
 
@@ -85,11 +85,11 @@ public class UserServiceImpl implements UserService{
         }
 
         return new UserProfileResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getRole().name(),
-                user.getCreatedAt()
+            user.getId(),
+            user.getName(),
+            user.getEmail(),
+            user.getRole().name(),
+            user.getCreatedAt()
         );
     }
 
@@ -105,11 +105,11 @@ public class UserServiceImpl implements UserService{
         }
 
         return new UserProfileResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getRole().name(),
-                user.getCreatedAt()
+            user.getId(),
+            user.getName(),
+            user.getEmail(),
+            user.getRole().name(),
+            user.getCreatedAt()
         );
     }
 }

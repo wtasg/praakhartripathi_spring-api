@@ -190,7 +190,8 @@ Controller → Service → Repository → Database
 
 ## 🎯 Interview Ready Summary
 
-> Built a Spring Boot REST API for expense tracking using PostgreSQL, implemented full CRUD operations, followed layered architecture, and tested APIs using curl.
+> Built a Spring Boot REST API for expense tracking using PostgreSQL, implemented full CRUD operations, followed layered
+> architecture, and tested APIs using curl.
 
 ---
 

@@ -29,7 +29,7 @@ import java.util.UUID;
 public class ImageServiceImpl implements ImageService {
 
     private final ImageRepository imageRepository;
-    
+
     @Value("${image.upload.dir:uploads}")
     private String uploadDir;
 
@@ -53,7 +53,7 @@ public class ImageServiceImpl implements ImageService {
         if (outputFormat == null || outputFormat.isEmpty()) {
             outputFormat = "jpg"; // Default
         }
-        
+
         // Generate unique filename
         String fileName = UUID.randomUUID().toString() + "." + outputFormat;
         File outputFile = new File(uploadDir, fileName);
@@ -90,16 +90,16 @@ public class ImageServiceImpl implements ImageService {
         metadata.setUrl(baseUrl + fileName);
         metadata.setSize(outputFile.length());
         metadata.setFormat(outputFormat);
-        
+
         ImageMetadata savedImage = imageRepository.save(metadata);
 
         return ImageUploadResponse.builder()
-                .imageId(savedImage.getId())
-                .imageUrl(savedImage.getUrl())
-                .size(savedImage.getSize())
-                .format(savedImage.getFormat())
-                .createdAt(savedImage.getCreatedAt())
-                .build();
+            .imageId(savedImage.getId())
+            .imageUrl(savedImage.getUrl())
+            .size(savedImage.getSize())
+            .format(savedImage.getFormat())
+            .createdAt(savedImage.getCreatedAt())
+            .build();
     }
 
     @Override
@@ -133,9 +133,9 @@ public class ImageServiceImpl implements ImageService {
         } else {
             // Convert
             Thumbnails.of(inputFile)
-                    .scale(1.0)
-                    .outputFormat(outputFormat)
-                    .toFile(outputFile);
+                .scale(1.0)
+                .outputFormat(outputFormat)
+                .toFile(outputFile);
         }
 
         // Save new metadata
@@ -143,16 +143,16 @@ public class ImageServiceImpl implements ImageService {
         newMetadata.setUrl(baseUrl + newFileName);
         newMetadata.setSize(outputFile.length());
         newMetadata.setFormat(outputFormat);
-        
+
         ImageMetadata savedImage = imageRepository.save(newMetadata);
 
         return ImageUploadResponse.builder()
-                .imageId(savedImage.getId())
-                .imageUrl(savedImage.getUrl())
-                .size(savedImage.getSize())
-                .format(savedImage.getFormat())
-                .createdAt(savedImage.getCreatedAt())
-                .build();
+            .imageId(savedImage.getId())
+            .imageUrl(savedImage.getUrl())
+            .size(savedImage.getSize())
+            .format(savedImage.getFormat())
+            .createdAt(savedImage.getCreatedAt())
+            .build();
     }
 
     @Override
@@ -182,7 +182,7 @@ public class ImageServiceImpl implements ImageService {
         String currentUrl = imageMetadata.getUrl();
         String currentFileName = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
         File fileToDelete = new File(uploadDir, currentFileName);
-        
+
         if (fileToDelete.exists()) {
             if (!fileToDelete.delete()) {
                 // Log warning but continue to delete metadata
@@ -214,7 +214,7 @@ public class ImageServiceImpl implements ImageService {
         // Generate thumbnail filename
         String extension = getExtension(currentFileName);
         if (extension == null) extension = "jpg";
-        
+
         String thumbFileName = imageId + "_" + width + "x" + height + "." + extension;
         File thumbFile = new File(uploadDir, thumbFileName);
 
@@ -225,13 +225,13 @@ public class ImageServiceImpl implements ImageService {
 
         // Generate thumbnail
         if ("ico".equalsIgnoreCase(extension)) {
-             Thumbnails.of(inputFile)
-                    .size(width, height)
-                    .toFile(thumbFile);
+            Thumbnails.of(inputFile)
+                .size(width, height)
+                .toFile(thumbFile);
         } else {
             Thumbnails.of(inputFile)
-                    .size(width, height)
-                    .toFile(thumbFile);
+                .size(width, height)
+                .toFile(thumbFile);
         }
 
         return baseUrl + thumbFileName;
@@ -272,16 +272,16 @@ public class ImageServiceImpl implements ImageService {
         metadata.setUrl(baseUrl + fileName);
         metadata.setSize(outputFile.length());
         metadata.setFormat(extension);
-        
+
         ImageMetadata savedImage = imageRepository.save(metadata);
 
         return ImageUploadResponse.builder()
-                .imageId(savedImage.getId())
-                .imageUrl(savedImage.getUrl())
-                .size(savedImage.getSize())
-                .format(savedImage.getFormat())
-                .createdAt(savedImage.getCreatedAt())
-                .build();
+            .imageId(savedImage.getId())
+            .imageUrl(savedImage.getUrl())
+            .size(savedImage.getSize())
+            .format(savedImage.getFormat())
+            .createdAt(savedImage.getCreatedAt())
+            .build();
     }
 
     private String getExtension(String filename) {

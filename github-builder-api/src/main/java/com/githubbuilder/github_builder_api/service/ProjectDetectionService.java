@@ -14,7 +14,7 @@ public class ProjectDetectionService {
         }
 
         if (Files.exists(repoPath.resolve("build.gradle"))
-                || Files.exists(repoPath.resolve("build.gradle.kts"))) {
+            || Files.exists(repoPath.resolve("build.gradle.kts"))) {
             return ProjectType.GRADLE;
         }
 
